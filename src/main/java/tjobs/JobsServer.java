@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class JobsServer {
 
 	public static void main(String[] args) {
-		 SpringApplication.run(JobsServer.class, args);
-	System.out.println("fuck");
-	
+		 SpringApplication.run(JobsServer.class, args);	
 	}
 
 	
