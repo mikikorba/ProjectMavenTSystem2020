@@ -11,6 +11,7 @@ public class JobsServer {
 
 	public static void main(String[] args) {
 		 SpringApplication.run(JobsServer.class, args);	
+		 System.out.println("hahahah Michal");
 	}
 
 	
