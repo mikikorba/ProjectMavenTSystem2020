@@ -9,68 +9,39 @@ import javax.persistence.Id;
 public class TJobsEntity {
 	@Id
 	@GeneratedValue
-	private int JobID;
-	private String JobTitle;
-	private String Location;
-	private String JobLevel;
-	private String EmploymentType;
+	private String MatchedObjectId;
 	private String ApplicationDeadline;
-	private String Benefits;
+	private String PositionTitle;
+	private String PositionLocation_CityName;
+	private String PositionLocation_CountryName;
 	@Column (length = 3000)
-	private String YourTask;
+	private String TextRequirementDescription;
 	@Column (length = 3000)
-	private String YourProfile;
-	private String timeAdded;
+	private String TextJobDescription;
+	private String PublicationEndDate;
+	private String PositionSchedule;
+	private String PositionURI;
+	private String ID;
+	private String JobCategory;
+	private String PublicationStartDate;
+	private String PositionBenefit_Code;
+	private String PositionBenefit_Name;
+	private String CareerLevel;
+	private String PositionID;
+	private String ParentOrganizationName;
 	
-	
-	public int getJobID() {
-		return JobID; 
+
+
+	public String getMatchedObjectId() {
+		return MatchedObjectId;
 	}
 
 
-	public void setJobID(int jobID) {
-		JobID = jobID;
+
+	public void setMatchedObjectId(String matchedObjectId) {
+		MatchedObjectId = matchedObjectId;
 	}
 
-
-	public String getJobTitle() {
-		return JobTitle;
-	}
-
-
-	public void setJobTitle(String jobTitle) {
-		JobTitle = jobTitle;
-	}
-
-
-	public String getLocation() {
-		return Location;
-	}
-
-
-	public void setLocation(String location) {
-		Location = location;
-	}
-
-
-	public String getJobLevel() {
-		return JobLevel;
-	}
-
-
-	public void setJobLevel(String jobLevel) {
-		JobLevel = jobLevel;
-	}
-
-
-	public String getEmploymentType() {
-		return EmploymentType;
-	}
-
-
-	public void setEmploymentType(String employmentType) {
-		EmploymentType = employmentType;
-	}
 
 
 	public String getApplicationDeadline() {
@@ -78,69 +49,230 @@ public class TJobsEntity {
 	}
 
 
+
 	public void setApplicationDeadline(String applicationDeadline) {
 		ApplicationDeadline = applicationDeadline;
 	}
 
 
-	public String getBenefits() {
-		return Benefits;
+
+	public String getPositionTitle() {
+		return PositionTitle;
 	}
 
 
-	public void setBenefits(String benefits) {
-		Benefits = benefits;
+
+	public void setPositionTitle(String positionTitle) {
+		PositionTitle = positionTitle;
 	}
 
 
-	public String getYourTask() {
-		return YourTask;
+
+	public String getPositionLocation_CityName() {
+		return PositionLocation_CityName;
 	}
 
 
-	public void setYourTask(String yourTask) {
-		YourTask = yourTask;
+
+	public void setPositionLocation_CityName(String positionLocation_CityName) {
+		PositionLocation_CityName = positionLocation_CityName;
 	}
 
 
-	public String getYourProfile() {
-		return YourProfile;
+
+	public String getPositionLocation_CountryName() {
+		return PositionLocation_CountryName;
 	}
 
 
-	public void setYourProfile(String yourProfile) {
-		YourProfile = yourProfile;
+
+	public void setPositionLocation_CountryName(String positionLocation_CountryName) {
+		PositionLocation_CountryName = positionLocation_CountryName;
 	}
 
 
-	public String getTimeAdded() {
-		return timeAdded;
+
+	public String getTextRequirementDescription() {
+		return TextRequirementDescription;
 	}
 
 
-	public void setTimeAdded(String timeAdded) {
-		this.timeAdded = timeAdded;
+
+	public void setTextRequirementDescription(String textRequirementDescription) {
+		TextRequirementDescription = textRequirementDescription;
 	}
 
 
-	public TJobsEntity(int jobID, String jobTitle, String location, String jobLevel, String employmentType,
-			String applicationDeadline, String benefits, String yourTask, String yourProfile, String timeAdded) {
+
+	public String getTextJobDescription() {
+		return TextJobDescription;
+	}
+
+
+
+	public void setTextJobDescription(String textJobDescription) {
+		TextJobDescription = textJobDescription;
+	}
+
+
+
+	public String getPublicationEndDate() {
+		return PublicationEndDate;
+	}
+
+
+
+	public void setPublicationEndDate(String publicationEndDate) {
+		PublicationEndDate = publicationEndDate;
+	}
+
+
+
+	public String getPositionSchedule() {
+		return PositionSchedule;
+	}
+
+
+
+	public void setPositionSchedule(String positionSchedule) {
+		PositionSchedule = positionSchedule;
+	}
+
+
+
+	public String getPositionURI() {
+		return PositionURI;
+	}
+
+
+
+	public void setPositionURI(String positionURI) {
+		PositionURI = positionURI;
+	}
+
+
+
+	public String getID() {
+		return ID;
+	}
+
+
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+
+
+	public String getJobCategory() {
+		return JobCategory;
+	}
+
+
+
+	public void setJobCategory(String jobCategory) {
+		JobCategory = jobCategory;
+	}
+
+
+
+	public String getPublicationStartDate() {
+		return PublicationStartDate;
+	}
+
+
+
+	public void setPublicationStartDate(String publicationStartDate) {
+		PublicationStartDate = publicationStartDate;
+	}
+
+
+
+	public String getPositionBenefit_Code() {
+		return PositionBenefit_Code;
+	}
+
+
+
+	public void setPositionBenefit_Code(String positionBenefit_Code) {
+		PositionBenefit_Code = positionBenefit_Code;
+	}
+
+
+
+	public String getPositionBenefit_Name() {
+		return PositionBenefit_Name;
+	}
+
+
+
+	public void setPositionBenefit_Name(String positionBenefit_Name) {
+		PositionBenefit_Name = positionBenefit_Name;
+	}
+
+
+
+	public String getCareerLevel() {
+		return CareerLevel;
+	}
+
+
+
+	public void setCareerLevel(String careerLevel) {
+		CareerLevel = careerLevel;
+	}
+
+
+
+	public String getPositionID() {
+		return PositionID;
+	}
+
+
+
+	public void setPositionID(String positionID) {
+		PositionID = positionID;
+	}
+
+
+
+	public String getParentOrganizationName() {
+		return ParentOrganizationName;
+	}
+
+
+
+	public void setParentOrganizationName(String parentOrganizationName) {
+		ParentOrganizationName = parentOrganizationName;
+	}
+
+
+
+	public TJobsEntity(String matchedObjectId, String applicationDeadline, String positionTitle,
+			String positionLocation_CityName, String positionLocation_CountryName, String textRequirementDescription,
+			String textJobDescription, String publicationEndDate, String positionSchedule, String positionURI,
+			String iD, String jobCategory, String publicationStartDate, String positionBenefit_Code,
+			String positionBenefit_Name, String careerLevel, String positionID, String parentOrganizationName) {
 		super();
-		JobID = jobID;
-		JobTitle = jobTitle;
-		Location = location;
-		JobLevel = jobLevel;
-		EmploymentType = employmentType;
+		MatchedObjectId = matchedObjectId;
 		ApplicationDeadline = applicationDeadline;
-		Benefits = benefits;
-		YourTask = yourTask;
-		YourProfile = yourProfile;
-		this.timeAdded = timeAdded;
+		PositionTitle = positionTitle;
+		PositionLocation_CityName = positionLocation_CityName;
+		PositionLocation_CountryName = positionLocation_CountryName;
+		TextRequirementDescription = textRequirementDescription;
+		TextJobDescription = textJobDescription;
+		PublicationEndDate = publicationEndDate;
+		PositionSchedule = positionSchedule;
+		PositionURI = positionURI;
+		ID = iD;
+		JobCategory = jobCategory;
+		PublicationStartDate = publicationStartDate;
+		PositionBenefit_Code = positionBenefit_Code;
+		PositionBenefit_Name = positionBenefit_Name;
+		CareerLevel = careerLevel;
+		PositionID = positionID;
+		ParentOrganizationName = parentOrganizationName;
 	}
-
-
- 
-
- 
-
 }
+	
+	
