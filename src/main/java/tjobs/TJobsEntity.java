@@ -24,7 +24,7 @@ public class TJobsEntity {
 	
 	
 	public int getJobID() {
-		return JobID;
+		return JobID; 
 	}
 
 

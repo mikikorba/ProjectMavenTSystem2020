@@ -14,7 +14,7 @@ public class TJobsServiceJPA {
 	private EntityManager entityManager;
 
 	public void addJobs(TJobsEntity job) {
-		entityManager.persist(job);
+		entityManager.persist(job) ;
 	}
 
 }
