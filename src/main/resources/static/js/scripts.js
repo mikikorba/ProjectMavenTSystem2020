@@ -6,7 +6,6 @@
 //            }
 //}, 3000);
 
-
 setInterval(function sortTable() {
     
     var table, rows, style, i, x, y;
