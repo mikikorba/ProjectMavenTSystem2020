@@ -44,7 +44,7 @@
                             <div class="desc-left"><h4><b>Locations:</b></h4></div><div class="desc-right"><h4>Bratislava, Slovakia, Kosice, Slovakia</h4></div>
                             <div class="desc-left"><h4><b>Job level:</b></h4></div><div class="desc-right"><h4>Graduated</h4></div>
                             <div class="desc-left"><h4><b>Employment type:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('position_schedule',11)}"/></h4></div>
-                            <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4>21/03/2020</h4></div>
+                            <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',11)}"/></h4></div>
                             <div class="desc-benefit"><h4><b>Benefits:</b></h4></div>
                             <div class="desc-benefit-text">
                                 <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
@@ -122,7 +122,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',11)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',11)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',11)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',11)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -130,7 +130,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',10)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',10)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',10)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',10)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -138,7 +138,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',9)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',9)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',9)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',9)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -146,7 +146,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',8)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',8)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',8)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',8)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -154,7 +154,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',7)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',7)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',7)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',7)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -162,7 +162,7 @@
                     <td class="hotjob"></td>
                     <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',6)}"/></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',6)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',6)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',6)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
