@@ -24,7 +24,7 @@ import tjobs.entity.jobsEntity;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class TestController {
+public class MainController {
 
 	@Autowired
 	private tjobs.service.jobsService jobsService;
@@ -33,44 +33,6 @@ public class TestController {
 	public String index() {
 //		jobsService.addComment(new jobsEntity("yap,yap,yap"));
 //		System.out.println(jobsService.getAllJobs().get(0).getDgkjhb());
-
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				boolean executeAdding = true;
-				List<jobsEntity> inDatabase = jobsService.getAllJobs();
-				List<jobsEntity> addToDatabase = new ArrayList<>();
-				try {
-					JsonArray tmp = pffff();
-					for (int i = 0; i < tmp.size(); i++) {
-						addToDatabase.add(new jobsEntity(tmp.get(i).getAsJsonObject()));
-					}
-					if (addToDatabase.isEmpty()) {
-						executeAdding = false;
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					executeAdding = false;
-				}
-				if (executeAdding) {
-					for (jobsEntity je : addToDatabase) {
-						boolean add = true;
-						for (jobsEntity dat : inDatabase) {
-							if (je.getID().equals(dat.getID())) {
-								add = false;
-							}
-						}
-						if (add) {
-							jobsService.addComment(je);
-							System.out.println("ADDED: |ID:" + je.getID() + " |IDENT:" + je.getIdent());
-						}
-
-					}
-				}
-
-			}
-		}).start();
 
 		return "index";
 	}
@@ -108,8 +70,32 @@ public class TestController {
 
 	public String getExactJobsDesc(String collum, int row) {
 		jobsEntity tmp = jobsService.getAllJobs().get(row);
+		if (collum.equalsIgnoreCase("application_deadline")) {
+			return tmp.getApplicationDeadline();
+		}
+		if (collum.equalsIgnoreCase("career_level")) {
+			return tmp.getCareerLevel();
+		}
+		if (collum.equalsIgnoreCase("id")) {
+			return tmp.getID();
+		}
 		if (collum.equalsIgnoreCase("job_category")) {
 			return tmp.getJobCategory();
+		}
+		if (collum.equalsIgnoreCase("matched_object_id")) {
+			return tmp.getMatchedObjectId();
+		}
+		if (collum.equalsIgnoreCase("parent_organization_name")) {
+			return tmp.getParentOrganizationName();
+		}
+		if (collum.equalsIgnoreCase("position_benefit_code")) {
+			return tmp.getPositionBenefit_Code();
+		}
+		if (collum.equalsIgnoreCase("position_benefit_name")) {
+			return tmp.getPositionBenefit_Name();
+		}
+		if (collum.equalsIgnoreCase("positionid")) {
+			return tmp.getPositionID();
 		}
 		if (collum.equalsIgnoreCase("position_location_city_name")) {
 			return tmp.getPositionLocation_CityName();
@@ -117,17 +103,26 @@ public class TestController {
 		if (collum.equalsIgnoreCase("position_location_country_name")) {
 			return tmp.getPositionLocation_CountryName();
 		}
+		if (collum.equalsIgnoreCase("position_schedule")) {
+			return tmp.getPositionSchedule();
+		}
+		if (collum.equalsIgnoreCase("position_title")) {
+			return tmp.getPositionTitle();
+		}
+		if (collum.equalsIgnoreCase("positionuri")) {
+			return tmp.getPositionURI();
+		}
+		if (collum.equalsIgnoreCase("publication_end_date")) {
+			return tmp.getPublicationEndDate();
+		}
 		if (collum.equalsIgnoreCase("publication_start_date")) {
 			return tmp.getPublicationStartDate();
 		}
 //		if (collum.equalsIgnoreCase("")) {
-//			return tmp.getApplicationDeadline();
+//			return tmp.get();
 //		}
-		return "null";
-	}
 
-	public jobsEntity meme(int arg) {
-		return jobsService.getAllJobs().get(arg);
+		return "null";
 	}
 
 	@RequestMapping("/requestdata")
@@ -135,37 +130,45 @@ public class TestController {
 		return "ajax_template";
 	}
 
-//
-//	public List<jobsEntity> getAllJobs() {
-//		return jobsService.getAllJobs();
-//	}
-//
-//	public String getAllJobs() {
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("<div>");
-//		sb.append("<tr>");
-//		sb.append("<td class=\"hotjob\"></td>");
-//		sb.append("<td class=\"job\"><h3><span>Senior sap consultant success factors employee central</span></h3></td>");
-//		sb.append("<td class=\"location\"><h3><span>Bratislava, Slovakia, Kosice, Slovakia</span></h3></td>");
-//		sb.append("<td class=\"posted\"><h3><span>13/01/2020</span></h3></td>");
-//		sb.append("<td class=\"benefits\"><img src=\"homeoffice.png\"></td>");
-//		sb.append("<td class=\"url\"><img src=\"qrcode.png\"></td>");
-//		sb.append("</tr>");
-//		sb.append("</div>");
-//		return sb.toString();	
-//	}
-//	
-	/*
-	 * @RequestMapping("/requestdata") public String bleble() { StringBuilder sb =
-	 * new StringBuilder(); sb.append("<tr>");
-	 * sb.append("<td class=\"hotjob\"></td>"); sb.
-	 * append("<td class=\"job\"><h3><span>Senior sap consultant success factors employee central</span></h3></td>"
-	 * ); sb.
-	 * append("<td class=\"location\"><h3><span>Bratislava, Slovakia, Kosice, Slovakia</span></h3></td>"
-	 * ); sb.append("<td class=\"posted\"><h3><span>13/01/2020</span></h3></td>");
-	 * sb.append("<td class=\"benefits\"><img src=\"homeoffice.png\"></td>");
-	 * sb.append("<td class=\"url\"><img src=\"qrcode.png\"></td>");
-	 * sb.append("</tr>"); return sb.toString(); }
-	 */
+	@RequestMapping("/refreshdb")
+	public String refreshDB() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				boolean executeAdding = true;
+				List<jobsEntity> inDatabase = jobsService.getAllJobs();
+				List<jobsEntity> addToDatabase = new ArrayList<>();
+				try {
+					JsonArray tmp = pffff();
+					for (int i = 0; i < tmp.size(); i++) {
+						addToDatabase.add(new jobsEntity(tmp.get(i).getAsJsonObject()));
+					}
+					if (addToDatabase.isEmpty()) {
+						executeAdding = false;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					executeAdding = false;
+				}
+				if (executeAdding) {
+					for (jobsEntity je : addToDatabase) {
+						boolean add = true;
+						for (jobsEntity dat : inDatabase) {
+							if (je.getID().equals(dat.getID())) {
+								add = false;
+							}
+						}
+						if (add) {
+							jobsService.addComment(je);
+							System.out.println("ADDED: |ID:" + je.getID() + " |IDENT:" + je.getIdent());
+						}
+
+					}
+				}
+
+			}
+		}).start();
+		return "/redirect:/";
+	}
 
 }
