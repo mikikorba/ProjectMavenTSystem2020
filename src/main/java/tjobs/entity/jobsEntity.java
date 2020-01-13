@@ -1,7 +1,5 @@
 package tjobs.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -48,7 +46,7 @@ public class jobsEntity {
 			PositionLocation_CityName = tmpLocation.get("CityName").toString();
 			PositionLocation_CountryName = tmpLocation.get("CountryName").toString();
 		}
-		JsonObject tmpUserArea = tmp.get("UserArea").getAsJsonObject();
+//		JsonObject tmpUserArea = tmp.get("UserArea").getAsJsonObject();
 //		TextRequirementDescription = tmpUserArea.get("TextRequirementDescription").toString();
 //		TextJobDescription = tmpUserArea.get("TextJobDescription").toString();
 		PublicationEndDate = tmp.get("PublicationEndDate").toString();
@@ -68,8 +66,8 @@ public class jobsEntity {
 			PositionBenefit_Code = tmpPositionBenefit.get("Code").toString();
 			PositionBenefit_Name = tmpPositionBenefit.get("Name").toString();
 		}
-		if (tmp.get("PositionBenefit").getAsJsonArray().size() > 0) {
-			JsonObject tmpCareerLevel = tmp.get("PositionBenefit").getAsJsonArray().get(0).getAsJsonObject();
+		if (tmp.get("CareerLevel").getAsJsonArray().size() > 0) {
+			JsonObject tmpCareerLevel = tmp.get("CareerLevel").getAsJsonArray().get(0).getAsJsonObject();
 			CareerLevel = tmpCareerLevel.get("Name").toString();
 		}
 		PositionID = tmp.get("PositionID").toString();

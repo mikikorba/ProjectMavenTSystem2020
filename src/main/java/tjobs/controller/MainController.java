@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -98,7 +97,7 @@ public class MainController {
 			return tmp.getPositionID();
 		}
 		if (collum.equalsIgnoreCase("position_location_city_name")) {
-			return tmp.getPositionLocation_CityName()+", "+ tmp.getPositionLocation_CountryName();
+			return tmp.getPositionLocation_CityName() + ", " + tmp.getPositionLocation_CountryName();
 		}
 		if (collum.equalsIgnoreCase("position_schedule")) {
 			return tmp.getPositionSchedule();
@@ -159,10 +158,8 @@ public class MainController {
 							jobsService.addComment(je);
 							System.out.println("ADDED: |ID:" + je.getID() + " |IDENT:" + je.getIdent());
 						}
-
 					}
 				}
-
 			}
 		}).start();
 		return "redirect:/";
