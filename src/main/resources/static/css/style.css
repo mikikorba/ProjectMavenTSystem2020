@@ -42,8 +42,11 @@ p, ul, li {
 }
 
 /* USEFUL CLASSES AND IDs*/
-.pink {
+.magenta {
     color: #e20074;
+}
+
+.link {
     text-decoration: underline;
 }
 
@@ -171,6 +174,9 @@ nav #title #nav-title {
     padding: 0.6vw 0 0 3.2vw;
     display: flex;
     flex-wrap: wrap;
+}
+#job #job-header #job-desc #job-title span {
+	margin: 0;
 }
 
 #job .job-details .job-detail-left #table {

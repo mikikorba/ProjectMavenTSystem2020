@@ -29,7 +29,7 @@
                         <span class="job-id"><h4><span th:utext="${@mainController.getExactJobsDesc('positionid',11)}"/></h4></span>
                     </div>
                     <div id="job-title">
-                        <span><h1><b>Senior sap consultant success factors employee central</b></h1></span>
+                        <span><h1><b><span th:utext="${@mainController.getExactJobsDesc('position_title',11)}"/></b></h1></span>
                     </div>
                 </div>
                 <div id="job-motto">
@@ -41,8 +41,8 @@
                 <!-- Current job's details container left side -->             
                 <div class="job-detail-left">
                     <div id="table">
-                            <div class="desc-left"><h4><b>Locations:</b></h4></div><div class="desc-right"><h4>Bratislava, Slovakia, Kosice, Slovakia</h4></div>
-                            <div class="desc-left"><h4><b>Job level:</b></h4></div><div class="desc-right"><h4>Graduated</h4></div>
+                            <div class="desc-left"><h4><b>Locations:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',6)}"/></h4></div>
+                            <div class="desc-left"><h4><b>Job level:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('career_level',11)}"/></h4></div>
                             <div class="desc-left"><h4><b>Employment type:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('position_schedule',11)}"/></h4></div>
                             <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',11)}"/></h4></div>
                             <div class="desc-benefit"><h4><b>Benefits:</b></h4></div>
@@ -51,7 +51,7 @@
                                 <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
                                 <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
                             </div>
-                           <div class="desc"><h4><b>Contact: </b><a class="pink">Lucia.Gburova@external.t-systems.com</a></h4></div>
+                           <div class="desc"><h4><b>Contact: </b><a class="link magent">Lucia.Gburova@external.t-systems.com</a></h4></div>
                     </div>
                     
                     <!-- Current job's qr code -->             
@@ -66,7 +66,7 @@
                 <!-- Current job's details container right side -->             
                 <div class="job-detail-right">
                     <div class="your">
-                        <div class="detail-title"><h2>Your task:</h2></div>
+                        <div class="detail-title magenta"><h2>Your task:</h2></div>
                         <div class="detail-text"><p>Purpose<br>
                         <br> 
                         Independently check, execute, solve (where appropriate), and creates tickets (problem ticket, change management ticket, incident, delivery order (DO)) in order to maintain service to customers according to given quality KPIs and internal processes (INM, CHM, PRM, DOM).<br>
@@ -81,7 +81,7 @@
                         Independently check, execute, solve (where appropriate), and creates tickets (problem ticket, change management ticket, incident, delivery order (DO)) in order to maintain</p></div>
                     </div>
                     <div class="your">
-                        <div class="detail-title"><h2>Your profile:</h2></div>
+                        <div class="detail-title magenta"><h2>Your profile:</h2></div>
                         <div class="detail-text"><p>Requirements<br>
                         Languages
                             <ul>
