@@ -1,31 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tjobs-main_screen</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/scripts.js"></script>
 </head>
+
 <body>
-	<!-- <div th:text="${@testController.allJobs}" /> -->
-	<!-- <div th:utext="${@testController.allJobs}" /> -->
-	<!-- <div th:utext="${@testController.meme(9)}" /> -->
+    <!-- The header of the site with the logo and title -->
+    <nav>
+        <div id="logo"><img src="img/t-systems-logo@2x.png"></div>
+        <div id="title"><h1 id="nav-title">Job opportunities</h1></div>
+    </nav>
+    
+    <!-- Here begins the main contnet with the job list and selected / currently displayed job's details -->
+    <section id="container">
+        
+        <!-- Current job's details container -->
+        <div id="job">
+            
+            <!-- Current job's header container -->
+            <div id="job-header">
+                <div id="job-desc">
+                    <div id="desc">
+                        <span class="job-id"><h4><b>Job-ID: </b></h4></span>
+                        <span class="job-id"><h4><span th:utext="${@mainController.getExactJobsDesc('positionid',11)}"/></h4></span>
+                    </div>
+                    <div id="job-title">
+                        <span><h1><b>Senior sap consultant success factors employee central</b></h1></span>
+                    </div>
+                </div>
+                <div id="job-motto">
+                    <span><h4 id="motto">Let's create the digital world of tommorrow. Apply now!</h4></span>
+                </div>
+            </div>
+            <!-- Current job's details container -->
+            <div class="job-details">
+                <!-- Current job's details container left side -->             
+                <div class="job-detail-left">
+                    <div id="table">
+                            <div class="desc-left"><h4><b>Locations:</b></h4></div><div class="desc-right"><h4>Bratislava, Slovakia, Kosice, Slovakia</h4></div>
+                            <div class="desc-left"><h4><b>Job level:</b></h4></div><div class="desc-right"><h4>Graduated</h4></div>
+                            <div class="desc-left"><h4><b>Employment type:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('position_schedule',11)}"/></h4></div>
+                            <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4>21/03/2020</h4></div>
+                            <div class="desc-benefit"><h4><b>Benefits:</b></h4></div>
+                            <div class="desc-benefit-text">
+                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                            </div>
+                           <div class="desc"><h4><b>Contact: </b><a class="pink">Lucia.Gburova@external.t-systems.com</a></h4></div>
+                    </div>
+                    
+                    <!-- Current job's qr code -->             
+                    <div id="qr-code">
+                        <h3 id="qr-title">Show more:</h3>
+                        <div id="code">
+                            <img class="code" src="/img/qrcode.png">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current job's details container right side -->             
+                <div class="job-detail-right">
+                    <div class="your">
+                        <div class="detail-title"><h2>Your task:</h2></div>
+                        <div class="detail-text"><p>Purpose<br>
+                        <br> 
+                        Independently check, execute, solve (where appropriate), and creates tickets (problem ticket, change management ticket, incident, delivery order (DO)) in order to maintain service to customers according to given quality KPIs and internal processes (INM, CHM, PRM, DOM).<br>
+                        2nd and 3rd  level environment.
+                        <br>
+                        <br>
+                        Key accountabilities<br>
+                        <br>
+                        Independently check, execute, solve (where appropriate), and creates tickets (problem ticket, change management ticket, incident, delivery order (DO)) in order to maintain</p>                        <br>
+                        Key accountabilities<br>
+                        <br>
+                        Independently check, execute, solve (where appropriate), and creates tickets (problem ticket, change management ticket, incident, delivery order (DO)) in order to maintain</p></div>
+                    </div>
+                    <div class="your">
+                        <div class="detail-title"><h2>Your profile:</h2></div>
+                        <div class="detail-text"><p>Requirements<br>
+                        Languages
+                            <ul>
+                                <li>	English – advanced </li>
+                        	    <li>	German – advanced (advantage) </li>
+                            </ul>
+                        <ul>
+                        	<li>	Practical end to end personal implementation experience  in SAP SuccessFactors Employee Central </li>
+	                        <li>	Understanding of business environment, IT processes, HR  processes, Change Management,</li>
+                        </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!-- Jobs list section -->             
+        <div id="jobs">
+<!--            <div id="header">
+            <h4><span class="job-title">Job title</span><span class="location">Location</span><span class="posted">Posted</span><span class="benefits">Benefits</span><span class="qr">URL</span></h4>
+            </div>
+            <ul><h2><div class="job-title active">Senior sap consultant success factors employee central</div><div class="location">Bratislava, Slovakia, Kosice, Slovakia</div><div class="posted">02/01/2020</div><div class="benefits"><img src="homeoffice.png"></div><div class="qr"><img src="qrcode.png"></div></h2></ul>-->
 
-<div id="demo">
-<h1>The XMLHttpRequest Object</h1>
-<button type="button" onclick="loadDoc()">Change Content</button>
-</div>
-
-
-	<script>
-		function loadDoc() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("demo").innerHTML =
-					this.responseText;
-				}
-			};
-			xhttp.open("GET", "/requestdata", true);
-			xhttp.send();
-		}
-	</script>
+            <table id="myTable">
+                <thead>
+                  <tr>
+                    <th class="hotjob"><img src="/img/T-GJS_sprite@2x.png"></th>
+                    <th class="job"><h4><span>Job title</span></h4></th>
+                    <th class="location"><h4><span>Location</span></h4></th>
+                    <th class="posted"><h4><span>Posted</span></h4></th>
+                    <th class="benefits"><h4>Benefits</h4></th>
+                    <th class="url"><h4>URL</h4></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="progress"></tr>
+                  <tr id="active">
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',11)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',11)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',11)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                  <tr>
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',10)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',10)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',10)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                  <tr>
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',9)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',9)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',9)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                  <tr>
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',8)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',8)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',8)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                  <tr>
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',7)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',7)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',7)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                  <tr>
+                    <td class="hotjob"></td>
+                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',6)}"/></h3></td>
+                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',6)}"/></h3></td>
+                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',6)}"/></h3></td>
+                    <td class="benefits"><img src="/img/homeoffice.png"></td>
+                    <td class="url"><img src="/img/qrcode.png"></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </body>
 </html>

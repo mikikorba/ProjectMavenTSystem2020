@@ -98,10 +98,7 @@ public class MainController {
 			return tmp.getPositionID();
 		}
 		if (collum.equalsIgnoreCase("position_location_city_name")) {
-			return tmp.getPositionLocation_CityName();
-		}
-		if (collum.equalsIgnoreCase("position_location_country_name")) {
-			return tmp.getPositionLocation_CountryName();
+			return tmp.getPositionLocation_CityName()+", "+ tmp.getPositionLocation_CountryName();
 		}
 		if (collum.equalsIgnoreCase("position_schedule")) {
 			return tmp.getPositionSchedule();
@@ -168,7 +165,7 @@ public class MainController {
 
 			}
 		}).start();
-		return "/redirect:/";
+		return "redirect:/";
 	}
 
 }
