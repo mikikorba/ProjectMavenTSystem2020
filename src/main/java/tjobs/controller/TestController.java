@@ -35,6 +35,7 @@ public class TestController {
 //		System.out.println(jobsService.getAllJobs().get(0).getDgkjhb());
 
 		new Thread(new Runnable() {
+
 			@Override
 			public void run() {
 				boolean executeAdding = true;
@@ -62,7 +63,7 @@ public class TestController {
 						}
 						if (add) {
 							jobsService.addComment(je);
-							System.out.println("ADDED: |ID:"+je.getID() + " |IDENT:"+je.getIdent());
+							System.out.println("ADDED: |ID:" + je.getID() + " |IDENT:" + je.getIdent());
 						}
 
 					}
@@ -104,4 +105,67 @@ public class TestController {
 
 		return output;
 	}
+
+	public String getExactJobsDesc(String collum, int row) {
+		jobsEntity tmp = jobsService.getAllJobs().get(row);
+		if (collum.equalsIgnoreCase("job_category")) {
+			return tmp.getJobCategory();
+		}
+		if (collum.equalsIgnoreCase("position_location_city_name")) {
+			return tmp.getPositionLocation_CityName();
+		}
+		if (collum.equalsIgnoreCase("position_location_country_name")) {
+			return tmp.getPositionLocation_CountryName();
+		}
+		if (collum.equalsIgnoreCase("publication_start_date")) {
+			return tmp.getPublicationStartDate();
+		}
+//		if (collum.equalsIgnoreCase("")) {
+//			return tmp.getApplicationDeadline();
+//		}
+		return "null";
+	}
+
+	public jobsEntity meme(int arg) {
+		return jobsService.getAllJobs().get(arg);
+	}
+
+	@RequestMapping("/requestdata")
+	public String bleble() {
+		return "ajax_template";
+	}
+
+//
+//	public List<jobsEntity> getAllJobs() {
+//		return jobsService.getAllJobs();
+//	}
+//
+//	public String getAllJobs() {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("<div>");
+//		sb.append("<tr>");
+//		sb.append("<td class=\"hotjob\"></td>");
+//		sb.append("<td class=\"job\"><h3><span>Senior sap consultant success factors employee central</span></h3></td>");
+//		sb.append("<td class=\"location\"><h3><span>Bratislava, Slovakia, Kosice, Slovakia</span></h3></td>");
+//		sb.append("<td class=\"posted\"><h3><span>13/01/2020</span></h3></td>");
+//		sb.append("<td class=\"benefits\"><img src=\"homeoffice.png\"></td>");
+//		sb.append("<td class=\"url\"><img src=\"qrcode.png\"></td>");
+//		sb.append("</tr>");
+//		sb.append("</div>");
+//		return sb.toString();	
+//	}
+//	
+	/*
+	 * @RequestMapping("/requestdata") public String bleble() { StringBuilder sb =
+	 * new StringBuilder(); sb.append("<tr>");
+	 * sb.append("<td class=\"hotjob\"></td>"); sb.
+	 * append("<td class=\"job\"><h3><span>Senior sap consultant success factors employee central</span></h3></td>"
+	 * ); sb.
+	 * append("<td class=\"location\"><h3><span>Bratislava, Slovakia, Kosice, Slovakia</span></h3></td>"
+	 * ); sb.append("<td class=\"posted\"><h3><span>13/01/2020</span></h3></td>");
+	 * sb.append("<td class=\"benefits\"><img src=\"homeoffice.png\"></td>");
+	 * sb.append("<td class=\"url\"><img src=\"qrcode.png\"></td>");
+	 * sb.append("</tr>"); return sb.toString(); }
+	 */
+
 }

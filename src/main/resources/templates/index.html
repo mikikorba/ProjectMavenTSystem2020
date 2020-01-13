@@ -4,6 +4,28 @@
 	<title></title>
 </head>
 <body>
+	<!-- <div th:text="${@testController.allJobs}" /> -->
+	<!-- <div th:utext="${@testController.allJobs}" /> -->
+	<!-- <div th:utext="${@testController.meme(9)}" /> -->
 
+<div id="demo">
+<h1>The XMLHttpRequest Object</h1>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+
+	<script>
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("demo").innerHTML =
+					this.responseText;
+				}
+			};
+			xhttp.open("GET", "/requestdata", true);
+			xhttp.send();
+		}
+	</script>
 </body>
 </html>
