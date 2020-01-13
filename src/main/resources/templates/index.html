@@ -8,7 +8,7 @@
     <script src="/js/scripts.js"></script>
 </head>
 
-<body>
+ <body onload="loadDoc()"> 
     <!-- The header of the site with the logo and title -->
     <nav>
         <div id="logo"><img src="img/t-systems-logo@2x.png"></div>
@@ -120,49 +120,9 @@
                   <tr id="progress"></tr>
                   <tr id="active">
                     <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',11)}"/></h3></td>
+                    <td class="job"><h3><div id="demo"></div></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',11)}"/></h3></td>
                     <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',11)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
-                  </tr>
-                  <tr>
-                    <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',10)}"/></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',10)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',10)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
-                  </tr>
-                  <tr>
-                    <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',9)}"/></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',9)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',9)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
-                  </tr>
-                  <tr>
-                    <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',8)}"/></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',8)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',8)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
-                  </tr>
-                  <tr>
-                    <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',7)}"/></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',7)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',7)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
-                  </tr>
-                  <tr>
-                    <td class="hotjob"></td>
-                    <td class="job"><h3><span th:utext="${@mainController.getExactJobsDesc('position_title',6)}"/></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',6)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',6)}"/></h3></td>
                     <td class="benefits"><img src="/img/homeoffice.png"></td>
                     <td class="url"><img src="/img/qrcode.png"></td>
                   </tr>
@@ -170,5 +130,22 @@
             </table>
         </div>
     </section>
+
+
+
+
+    <script type="text/javascript">
+        
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/profile?collum=position_title&row=5", true);
+            xhttp.send();
+        }
+    </script>
 </body>
 </html>
