@@ -72,6 +72,26 @@ public class jobsEntity {
 		}
 		PositionID = tmp.get("PositionID").toString();
 		ParentOrganizationName = tmp.get("ParentOrganizationName").toString();
+
+		MatchedObjectId = clear(MatchedObjectId);
+		ApplicationDeadline = clear(ApplicationDeadline);
+		PositionTitle = clear(PositionTitle);
+		PositionLocation_CityName = clear(PositionLocation_CityName);
+		PositionLocation_CountryName = clear(PositionLocation_CountryName);
+//		 TextRequirementDescription=clear(TextRequirementDescription);
+//		 TextJobDescription=clear(TextJobDescription);
+		PublicationEndDate = clear(PublicationEndDate);
+		PositionSchedule = clear(PositionSchedule);
+		PositionURI = clear(PositionURI);
+		ID = clear(ID);
+		JobCategory = clear(JobCategory);
+		PublicationStartDate = clear(PublicationStartDate);
+		PositionBenefit_Code = clear(PositionBenefit_Code);
+		PositionBenefit_Name = clear(PositionBenefit_Name);
+		CareerLevel = clear(CareerLevel);
+		PositionID = clear(PositionID);
+		ParentOrganizationName = clear(ParentOrganizationName);
+
 	}
 
 	@Override
@@ -96,6 +116,13 @@ public class jobsEntity {
 		sb.append("PositionID : " + PositionID + "\r\n");
 		sb.append("ParentOrganizationName : " + ParentOrganizationName + "\r\n");
 		return sb.toString();
+	}
+
+	private String clear(String s) {
+		if (s.isEmpty()) {
+			return "";
+		}
+		return s.substring(1, s.length() - 1);
 	}
 
 	public int getIdent() {
@@ -233,5 +260,5 @@ public class jobsEntity {
 	public void setParentOrganizationName(String parentOrganizationName) {
 		ParentOrganizationName = parentOrganizationName;
 	}
-	
+
 }

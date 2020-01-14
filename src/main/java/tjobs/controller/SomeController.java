@@ -11,13 +11,35 @@ import tjobs.entity.jobsEntity;
 
 @Controller
 public class SomeController {
-	
+
 	@Autowired
 	private tjobs.service.jobsService jobsService;
 
 	@RequestMapping("/profile")
-	public @ResponseBody String processAJAXRequest(@RequestParam String collum, @RequestParam int row) {//localhost/profile?collum=career_level&row=5
+	public @ResponseBody String processAJAXRequest(@RequestParam String collum, @RequestParam int row) {// localhost/profile?collum=career_level&row=5
 		jobsEntity tmp = jobsService.getAllJobs().get(row);
+		StringBuilder sb = new StringBuilder();
+		String[] args = collum.split(",");
+		System.out.println(collum + "   "+ args.length);
+		for (int i = 0; i < args.length; i++) {
+			if (i!=0) {
+				sb.append(",");
+			}
+			sb.append(getFromJobsEntity(args[i],tmp));
+		}
+		return sb.toString();
+	}
+	@RequestMapping("/html")
+	public String html() {
+		return "html";
+	}
+
+	@RequestMapping("/tmp")
+	public String dfbfgb() {
+		return "tmp";
+	}
+
+	private String getFromJobsEntity(String collum, jobsEntity tmp) {
 		if (collum.equalsIgnoreCase("application_deadline")) {
 			return tmp.getApplicationDeadline();
 		}
@@ -69,13 +91,7 @@ public class SomeController {
 //		if (collum.equalsIgnoreCase("")) {
 //			return tmp.get();
 //		}
-
 		return "null";
-	}
-
-	@RequestMapping("/tmp")
-	public String dfbfgb() {
-		return "tmp";
 	}
 
 }
