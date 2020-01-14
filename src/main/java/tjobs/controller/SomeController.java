@@ -1,5 +1,7 @@
 package tjobs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,23 +14,36 @@ import tjobs.entity.jobsEntity;
 @Controller
 public class SomeController {
 
+	private List<jobsEntity> cash;
+	private long lastRefresh = 0;
+
 	@Autowired
 	private tjobs.service.jobsService jobsService;
 
 	@RequestMapping("/profile")
 	public @ResponseBody String processAJAXRequest(@RequestParam String collum, @RequestParam int row) {// localhost/profile?collum=career_level&row=5
-		jobsEntity tmp = jobsService.getAllJobs().get(row);
+		long nowTime = System.currentTimeMillis();
+		if (cash == null || lastRefresh > nowTime - 1000 * 60 * 60) {
+			cash = jobsService.getAllJobs();
+			lastRefresh = nowTime;
+			System.out.println("db cash refreshed !");
+		}
+		if (collum.equalsIgnoreCase("rows")) {
+			return cash.size() + "";
+		}
+		jobsEntity tmp = cash.get(row);
 		StringBuilder sb = new StringBuilder();
 		String[] args = collum.split(",");
-		System.out.println(collum + "   "+ args.length);
+		System.out.println(collum + "   " + args.length);
 		for (int i = 0; i < args.length; i++) {
-			if (i!=0) {
+			if (i != 0) {
 				sb.append(",");
 			}
-			sb.append(getFromJobsEntity(args[i],tmp));
+			sb.append(getFromJobsEntity(args[i], tmp));
 		}
 		return sb.toString();
 	}
+
 	@RequestMapping("/html")
 	public String html() {
 		return "html";
