@@ -8,7 +8,7 @@
     <script src="js/scripts.js"></script>
 </head>
 
- <body> 
+ <body onload="onload()"> 
     <!-- The header of the site with the logo and title -->
     <nav>
         <div id="logo"><img src="img/t-systems-logo@2x.png"></div>
@@ -109,7 +109,7 @@
                 <thead>
                   <tr>
                     <th class="hotjob"><img src="img/T-GJS_sprite@2x.png"></th>
-                    <th class="job"><h4><span>Job title</span></h4></th>
+                    <th class="job-title"><h4><span>Job title</span></h4></th>
                     <th class="location"><h4><span>Location</span></h4></th>
                     <th class="posted"><h4><span>Posted</span></h4></th>
                     <th class="benefits"><h4>Benefits</h4></th>
@@ -120,11 +120,11 @@
                   <tr id="progress"></tr>
                   <tr id="active">
                     <td class="hotjob"></td>
-                    <td class="job"><h3><div id="demo"></div></h3></td>
-                    <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',11)}"/></h3></td>
-                    <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',11)}"/></h3></td>
-                    <td class="benefits"><img src="img/homeoffice.png"></td>
-                    <td class="url"><img src="img/qrcode.png"></td>
+                    <td class="job-title"></td>
+                    <td class="location"></td>
+                    <td class="posted"></td>
+                    <td class="benefits"></td>
+                    <td class="url"></td>
                   </tr>
                 </tbody>
             </table>
