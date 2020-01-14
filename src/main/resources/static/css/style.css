@@ -105,7 +105,7 @@ nav #title #nav-title {
 
 /* CURRENT JOB'S HEADER SECTION */
 #job #job-header {
-    background: url("/img/GJSP_Header_T-Systems_Limited_UK.png");
+    background: url("GJSP_Header_T-Systems_Limited_UK.png");
     background-repeat: no-repeat;
     background-position: 40vw -1vw;
     background-size: contain;

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T-Systems JOB OFFERS</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/scripts.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/scripts.js"></script>
 </head>
 
  <body> 
@@ -47,9 +47,9 @@
                             <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4><span th:utext="${@mainController.getExactJobsDesc('publication_end_date',11)}"/></h4></div>
                             <div class="desc-benefit"><h4><b>Benefits:</b></h4></div>
                             <div class="desc-benefit-text">
-                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
-                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
-                                <ul><img class="benefit" src="/img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                                <ul><img class="benefit" src="img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                                <ul><img class="benefit" src="img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
+                                <ul><img class="benefit" src="img/homeoffice.png"><h4><span th:utext="${@mainController.getExactJobsDesc('position_benefit_name',11)}"/></h4></ul>
                             </div>
                            <div class="desc"><h4><b>Contact: </b><a class="link magent">Lucia.Gburova@external.t-systems.com</a></h4></div>
                     </div>
@@ -58,7 +58,7 @@
                     <div id="qr-code">
                         <h3 id="qr-title">Show more:</h3>
                         <div id="code">
-                            <img class="code" src="/img/qrcode.png">
+                            <img class="code" src="img/qrcode.png">
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
             <table id="myTable">
                 <thead>
                   <tr>
-                    <th class="hotjob"><img src="/img/T-GJS_sprite@2x.png"></th>
+                    <th class="hotjob"><img src="img/T-GJS_sprite@2x.png"></th>
                     <th class="job"><h4><span>Job title</span></h4></th>
                     <th class="location"><h4><span>Location</span></h4></th>
                     <th class="posted"><h4><span>Posted</span></h4></th>
@@ -123,8 +123,8 @@
                     <td class="job"><h3><div id="demo"></div></h3></td>
                     <td class="location"><h3><span th:utext="${@mainController.getExactJobsDesc('position_location_city_name',11)}"/></h3></td>
                     <td class="posted"><h3><span th:utext="${@mainController.getExactJobsDesc('publication_start_date',11)}"/></h3></td>
-                    <td class="benefits"><img src="/img/homeoffice.png"></td>
-                    <td class="url"><img src="/img/qrcode.png"></td>
+                    <td class="benefits"><img src="img/homeoffice.png"></td>
+                    <td class="url"><img src="img/qrcode.png"></td>
                   </tr>
                 </tbody>
             </table>
