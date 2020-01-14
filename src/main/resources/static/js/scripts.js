@@ -23,7 +23,7 @@ function loadDoc(id, col, row) {
             document.getElementsByClassName(id)[0].innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "/profile?collum="+col+"&row="+row, true);
+    xhttp.open("GET", "profile?collum="+col+"&row="+row, true);
     xhttp.send();
 }
 
