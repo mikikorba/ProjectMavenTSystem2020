@@ -15,8 +15,7 @@ local.properties
 .loadpath
 .recommenders
 
-# Application properties for ports Mac
-*.properties
+
 
 # External tool builders
 .externalToolBuilders/
