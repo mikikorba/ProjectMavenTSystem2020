@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tjobs-main_screen</title>
+    <title>T-Systems JOB OFFERS</title>
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/scripts.js"></script>
 </head>
 
- <body onload="loadDoc()"> 
+ <body> 
     <!-- The header of the site with the logo and title -->
     <nav>
         <div id="logo"><img src="img/t-systems-logo@2x.png"></div>
@@ -130,22 +130,5 @@
             </table>
         </div>
     </section>
-
-
-
-
-    <script type="text/javascript">
-        
-        function loadDoc() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("demo").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "/profile?collum=position_title&row=5", true);
-            xhttp.send();
-        }
-    </script>
 </body>
 </html>
