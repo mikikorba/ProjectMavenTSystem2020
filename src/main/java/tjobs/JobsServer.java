@@ -10,12 +10,7 @@ public class JobsServer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JobsServer.class, args);
-		try {
-			Runtime rt = Runtime.getRuntime();
-			Process pr = rt.exec("\"C:\\Program Files\\Mozilla Firefox\\firefox.exe\" localhost:8080/refreshdb");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 }
