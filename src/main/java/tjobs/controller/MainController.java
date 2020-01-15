@@ -226,8 +226,11 @@ public class MainController {
 
 //				regenerateQRcodes();
 				// TODO call QRcodeGen
-				
+				boolean isLinux = java.lang.System.getProperties().getProperty("os.name").equalsIgnoreCase("linux");
 				String prefix = "src/main/resources/static/qrCodes/";
+				if (isLinux) {
+					prefix = "/usr/local/tomcat/webapps/team2/WEB-INF/classes/static/qrCodes/";
+				}
 				File f = new File(prefix);
 				if (f.exists()) {
 					File[] tmp = f.getAbsoluteFile().listFiles();
