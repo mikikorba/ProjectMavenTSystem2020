@@ -362,7 +362,8 @@ nav #title #nav-title {
     z-index: 99999;
     height: 3.5vw; 
 }
-#jobs table #active .job-title h3 {
+
+#jobs table #active .job-title {
     font-weight: 700 !important;
     text-transform: uppercase;    
 }
@@ -371,7 +372,7 @@ nav #title #nav-title {
 	display: block;
 }
 
-#jobs table tr h3 {
+#jobs table tr {
     font-weight: 400; 
 }
 
@@ -417,14 +418,19 @@ nav #title #nav-title {
 
 #jobs table .job-title {
     width: 50vw;
+    font-size: 1.4vw;
+    line-height: 0 !important;
 }
 
 #jobs table .location {
     width: 24.3vw;
+    font-size: 1.4vw; 
+    
 }
 
 #jobs table .posted {
     width: 10vw;
+    font-size: 1.4vw;
 }
 
 #jobs table .benefits {
@@ -579,6 +585,10 @@ nav #title #nav-title {
         margin-top: 3.2vw;
     }
     
+    #jobs table td {
+    	height: 8vw;
+    }
+    
     #jobs table .hotjob {
         width: 3vw;
         padding-left: 1.2vw;
@@ -587,14 +597,20 @@ nav #title #nav-title {
     #jobs table .job-title {
         width: 41vw;
         padding-right: 1.2vw;
+        font-size: 2.4vw;
+     	line-height: normal !important;       
     }
 
     #jobs table .location {
         width: 22vw;
+        font-size: 2.4vw;
+    	line-height: normal !important;
     }
 
     #jobs table .posted {
         width: 14vw;
+        font-size: 2.4vw;
+    	line-height: normal !important;
     }
 
     #jobs table .benefits {
@@ -615,7 +631,9 @@ nav #title #nav-title {
     }
 
     #progress, #active {
-        height: 11vw;
+        height: 8vw;
+        font-size: 2.4vw;
+        line-height: normal !important;
     }
 } 
 
