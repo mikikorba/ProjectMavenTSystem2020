@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,11 @@ import tjobs.entity.jobsEntity;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class MainController {
 
+	@Autowired
+	private ServletContext servletContext;
+
+	
+	
 	@Autowired
 	private tjobs.service.jobsService jobsService;
 

@@ -21,7 +21,7 @@ public class SomeController {
 	private tjobs.service.jobsService jobsService;
 
 	@RequestMapping("/profile")
-	public @ResponseBody String processAJAXRequest(@RequestParam String collum, @RequestParam int row) {// localhost/profile?collum=career_level&row=5
+	public @ResponseBody String processAJAXRequest(@RequestParam String collum, @RequestParam int row) { // localhost/profile?collum=career_level&row=5
 		long nowTime = System.currentTimeMillis();
 		if (cash == null || lastRefresh > nowTime - 1000 * 60 * 60) {
 			cash = jobsService.getAllJobs();

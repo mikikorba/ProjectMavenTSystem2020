@@ -105,7 +105,7 @@ nav #title #nav-title {
 
 /* CURRENT JOB'S HEADER SECTION */
 #job #job-header {
-    background: url("/img/GJSP_Header_T-Systems_Limited_UK.png");
+    background: url("../img/GJSP_Header_T-Systems_Limited_UK.png");
     background-repeat: no-repeat;
     background-position: 40vw -1vw;
     background-size: contain;
@@ -361,7 +361,7 @@ nav #title #nav-title {
     z-index: 99999;
     height: 3.5vw; 
 }
-#jobs table #active .job h3 {
+#jobs table #active .job-title h3 {
     font-weight: 700 !important;
     text-transform: uppercase;    
 }
@@ -414,7 +414,7 @@ nav #title #nav-title {
     width: 0.9vw;
 }
 
-#jobs table .job {
+#jobs table .job-title {
     width: 50vw;
 }
 
@@ -583,7 +583,7 @@ nav #title #nav-title {
         padding-left: 1.2vw;
     }
 
-    #jobs table .job {
+    #jobs table .job-title {
         width: 41vw;
         padding-right: 1.2vw;
     }
