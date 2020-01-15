@@ -6,6 +6,8 @@ import javax.persistence.Id;
 
 import com.google.gson.JsonObject;
 
+import tjobs.utils.Hash;
+
 @Entity
 public class jobsEntity {
 	@Id
@@ -22,6 +24,7 @@ public class jobsEntity {
 	private String PublicationEndDate = "";
 	private String PositionSchedule = "";
 	private String PositionURI = "";
+	private String LinkHash = "";
 	private String ID = "";
 	private String JobCategory = "";
 	private String PublicationStartDate = "";
@@ -92,6 +95,7 @@ public class jobsEntity {
 		PositionID = clear(PositionID);
 		ParentOrganizationName = clear(ParentOrganizationName);
 
+		LinkHash=Hash.fingerprintString(PositionURI) + ".png";
 	}
 
 	@Override
@@ -195,6 +199,14 @@ public class jobsEntity {
 
 	public void setPositionURI(String positionURI) {
 		PositionURI = positionURI;
+	}
+
+	public String getLinkHash() {
+		return LinkHash;
+	}
+
+	public void setLinkHash(String linkHash) {
+		LinkHash = linkHash;
 	}
 
 	public String getID() {
