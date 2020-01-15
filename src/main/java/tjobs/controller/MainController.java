@@ -1,6 +1,7 @@
 package tjobs.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
@@ -34,6 +37,19 @@ public class MainController {
 //		System.out.println(jobsService.getAllJobs().get(0).getDgkjhb());
 
 		return "index";
+	}
+
+	@RequestMapping("/filesys")
+	public @ResponseBody String files(@RequestParam String s) {
+		List<File> allOfThem = new ArrayList<>();
+		File[] f = new File(s).getAbsoluteFile().listFiles();
+
+		StringBuilder sb = new StringBuilder();
+        sb.append("<style type=\"text/css\">*{margin:0px;padding:0px;border:0px;}</style>");
+		for (File fl : f) {
+			sb.append((fl.isFile()?"<pre style=\"color: blue\">":"<pre style=\"color: red\">")+fl.getAbsolutePath().replace("\\", "/") + "</pre><br>");
+		}
+		return sb.toString();
 	}
 
 	private JsonArray pffff() throws MalformedURLException, Exception {
