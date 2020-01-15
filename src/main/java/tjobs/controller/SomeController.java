@@ -54,7 +54,7 @@ public class SomeController {
 		return "tmp";
 	}
 
-	private String getFromJobsEntity(String collum, jobsEntity tmp) {
+	private String getFromJobsEntity(String collum, jobsEntity tmp) {//wtf to iste aj v mainController
 		if (collum.equalsIgnoreCase("application_deadline")) {
 			return tmp.getApplicationDeadline();
 		}

@@ -31,6 +31,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import tjobs.entity.jobsEntity;
+import tjobs.utils.Hash;
+import tjobs.utils.qrCodeGen;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -39,8 +41,6 @@ public class MainController {
 	@Autowired
 	private ServletContext servletContext;
 
-	
-	
 	@Autowired
 	private tjobs.service.JobsService jobsService;
 
@@ -58,38 +58,45 @@ public class MainController {
 		File[] f = new File(s).getAbsoluteFile().listFiles();
 
 		StringBuilder sb = new StringBuilder();
-        sb.append("<style type=\"text/css\">*{margin:0px;padding:0px;border:0px;}</style>");
+		sb.append("<style type=\"text/css\">*{margin:0px;padding:0px;border:0px;}</style>");
 		for (File fl : f) {
-			sb.append((fl.isFile()?"<pre style=\"color: blue\">":"<pre style=\"color: red\">")+fl.getAbsolutePath().replace("\\", "/") + "</pre><br>");
+			sb.append((fl.isFile() ? "<pre style=\"color: blue\">" : "<pre style=\"color: red\">")
+					+ fl.getAbsolutePath().replace("\\", "/") + "</pre><br>");
 		}
 		return sb.toString();
 	}
+
 	@RequestMapping("/mk")
 	public @ResponseBody String mkfile(@RequestParam String s) {
 		File f = new File(s);
-			try {
-				Random r = new Random();
-		        BufferedImage img = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
-		        Graphics g = img.getGraphics();
-		        g.setColor(Color.red);
-		        g.fillRect(0, 0, 500, 500);
-		        for (int i = 0; i < 200; i++) {
-		            g.setColor(new Color(r.nextInt(16777215)));
-		            g.drawRect(i, i, 500-i*2-1, 500-i*2-1);
-		        }
-		        
-		        ImageIO.write(img, "png", f);
-			} catch (IOException e) {
-				return "null";
+		try {
+			Random r = new Random();
+			BufferedImage img = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+			Graphics g = img.getGraphics();
+			g.setColor(Color.red);
+			g.fillRect(0, 0, 500, 500);
+			for (int i = 0; i < 200; i++) {
+				g.setColor(new Color(r.nextInt(16777215)));
+				g.drawRect(i, i, 500 - i * 2 - 1, 500 - i * 2 - 1);
 			}
-		
+
+			ImageIO.write(img, "png", f);
+		} catch (IOException e) {
+			return "null";
+		}
+
 		return f.getAbsolutePath();
 	}
+
 	@RequestMapping("/rm")
 	public @ResponseBody String rmfile(@RequestParam String s) {
 		File f = new File(s);
 		f.delete();
 		return f.getAbsolutePath();
+	}
+	@RequestMapping("/os")
+	public @ResponseBody String getOs() {
+		return java.lang.System.getProperties().getProperty("os.name");
 	}
 
 	private JsonArray pffff() throws MalformedURLException, Exception {
@@ -123,7 +130,7 @@ public class MainController {
 		return output;
 	}
 
-	public String getExactJobsDesc(String collum, int row) {
+	public String getExactJobsDesc(String collum, int row) {// wtf to iste aj v someController
 		jobsEntity tmp = jobsService.getAllJobs().get(row);
 		if (collum.equalsIgnoreCase("application_deadline")) {
 			return tmp.getApplicationDeadline();
@@ -216,8 +223,28 @@ public class MainController {
 						}
 					}
 				}
+
+//				regenerateQRcodes();
+				// TODO call QRcodeGen
+				
+				String prefix = "src/main/resources/static/qrCodes/";
+				File f = new File(prefix);
+				if (f.exists()) {
+					File[] tmp = f.getAbsoluteFile().listFiles();
+					for (File file : tmp) {
+			            file.delete();
+			        }
+					f.delete();
+				}
+				f.mkdirs();
+				for (jobsEntity je : inDatabase) {
+					qrCodeGen.qrFromURLtoFile("https://t-systems.jobs/global-careers-en/" + je.getPositionURI(), 1000,
+							prefix + Hash.fingerprintString(je.getPositionURI()) + ".png");
+				}
+
 			}
 		}).start();
+
 		return "redirect:/";
 	}
 
