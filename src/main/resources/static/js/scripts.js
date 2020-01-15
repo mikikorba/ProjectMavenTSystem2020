@@ -10,10 +10,12 @@ setInterval(function sortTable() {
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         document.getElementsByTagName("tr")[2].setAttribute("id","active");
         document.getElementsByTagName("tr")[3].removeAttribute("id");
+        
     }
     document.getElementById("hide").setAttribute("id", "job");
     document.getElementById("job").setAttribute("id", "hide");
 }, 15000);
+//v CSS: #progress {animation: loader 15s linear infinite;}
 
 
 function loadDoc(id, col, row) {
