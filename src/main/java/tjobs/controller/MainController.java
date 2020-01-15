@@ -1,5 +1,8 @@
 package tjobs.controller;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +13,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +69,17 @@ public class MainController {
 		File f = new File(s);
 		if (!f.exists()) {
 			try {
-				f.createNewFile();
+				Random r = new Random();
+		        BufferedImage img = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+		        Graphics g = img.getGraphics();
+		        g.setColor(Color.red);
+		        g.fillRect(0, 0, 500, 500);
+		        for (int i = 0; i < 200; i++) {
+		            g.setColor(new Color(r.nextInt(16777215)));
+		            g.drawRect(i, i, 500-i*2-1, 500-i*2-1);
+		        }
+		        
+		        ImageIO.write(img, "png", f);
 			} catch (IOException e) {
 				return "null";
 			}
