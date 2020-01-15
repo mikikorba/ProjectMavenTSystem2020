@@ -15,7 +15,8 @@ local.properties
 .loadpath
 .recommenders
 
-
+# remove class
+*.classpath
 
 # External tool builders
 .externalToolBuilders/

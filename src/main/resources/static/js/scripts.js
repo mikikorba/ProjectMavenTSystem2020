@@ -12,29 +12,26 @@ setInterval(function sortTable() {
         document.getElementsByTagName("tr")[3].removeAttribute("id");
         
     }
-    document.getElementById("hide").setAttribute("id", "job");
-    document.getElementById("job").setAttribute("id", "hide");
 }, 15000);
 //v CSS: #progress {animation: loader 15s linear infinite;}
 
-
-function loadDoc(id, col, row) {
-    var xhttp = new XMLHttpRequest();
+function onload(){	
+	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementsByClassName(id)[0].innerHTML = this.responseText;
+        	var jobs = JSON.parse(this.responseText);
+        	fillTable(jobs);
         }
     };
-    xhttp.open("GET", "profile?collum="+col+"&row="+row, true);
-    xhttp.send();
+    xhttp.open("GET", "api/jobs");
+    xhttp.send();	
 }
 
-function onload(){
+function fillTable(jobs) {
 	  var table = document.getElementById("myTable");
-	  for (i = 1; i < 30; i++) {
+	  for (i = 1; i <= jobs.length; i++) {
+		  var job = jobs[i - 1];
 	  	var row = table.insertRow(i + 1);  	
-        document.getElementsByTagName("tr")[2].setAttribute("id","active");
-        
         
 	  	var cell0 = row.insertCell(0);
 	  	cell0.className = 'hotjob'+i;
@@ -43,14 +40,18 @@ function onload(){
 	  	var cell1 = row.insertCell(1);
 	  	cell1.className = 'job-title'+i;
 	  	cell1.setAttribute("style", "width:50vw; font-weight: 700;text-transform: uppercase; font-size: 1.4vw; line-height: normal");
+	  	cell1.innerHTML = job.positionTitle;
 
 	  	var cell2 = row.insertCell(2);
 	  	cell2.className = 'location'+i;
 	  	cell2.setAttribute("style", "width:24.3vw; font-weight: 400; font-size: 1.4vw; line-height: normal");
-
+	  	cell2.innerHTML = job.positionLocation_CityName + ", " + job.positionLocation_CountryName;
+	  	
 	  	var cell3 = row.insertCell(3);
 	  	cell3.className = 'posted'+i;
 	  	cell3.setAttribute("style", "width:10vw; font-weight: 400; font-size: 1.4vw; line-height: normal");
+	  	cell3.innerHTML = job.publicationStartDate;
+
 
 	 	var cell4 = row.insertCell(4);
 	  	cell4.className = 'benefits'+i;
@@ -59,16 +60,6 @@ function onload(){
 	  	var cell5 = row.insertCell(5);
 	  	cell5.className = 'url'+i;
 	  	cell5.setAttribute("style", "text-aling:center");
-
-	
-//	  	loadDoc("hotjob"+i,"position_title",i);
-	  	loadDoc("job-title"+i,"position_title",i);
-	  	loadDoc("location"+i,"position_location_city_name," + "" + "position_location_country_name",i);
-	  	loadDoc("posted"+i,"publication_start_date",i);
-//	  	loadDoc("benefits"+i,"position_benefit_name",i);  
-//	  	loadDoc("url"+i,"position_title",i);  
-		
-
 	 }
+      document.getElementsByTagName("tr")[2].setAttribute("id","active");
 }
-

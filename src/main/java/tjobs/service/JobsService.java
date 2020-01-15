@@ -4,7 +4,7 @@ import java.util.List;
 
 import tjobs.entity.jobsEntity;
 
-public interface jobsService {
+public interface JobsService {
 
 	void addComment(jobsEntity job);
 

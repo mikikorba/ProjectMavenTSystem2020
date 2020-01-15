@@ -10,7 +10,7 @@ import tjobs.entity.jobsEntity;
 
 @Component
 @Transactional
-public class jobsServiceJPA implements jobsService{
+public class jobsServiceJPA implements JobsService{
 
 	@PersistenceContext
 	private EntityManager entityManager;

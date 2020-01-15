@@ -42,7 +42,7 @@ public class MainController {
 	
 	
 	@Autowired
-	private tjobs.service.jobsService jobsService;
+	private tjobs.service.JobsService jobsService;
 
 	@RequestMapping("/")
 	public String index() {
