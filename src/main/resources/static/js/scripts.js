@@ -45,8 +45,14 @@ function fillTable() {
 	  
 //	  	for (i = 1; i < job.position_benefit_code.length; i++) {
 			var img = document.createElement("img");
-			img.src = "/img/homeoffice.png";
-//			img.src = "/img/canteen.png";
+//			img.src = "img/homeoffice.png";
+//			img.src = "img/canteen.png";
+			if (job.positionBenefit_Code=="homeoffice") {
+				img.src = "img/homeoffice.png";
+			}
+			else {
+				img.src = "";
+			}
 	  	
 			var src = document.getElementById("img"+i);
 			src.appendChild(img);
