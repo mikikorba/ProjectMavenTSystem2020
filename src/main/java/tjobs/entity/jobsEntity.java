@@ -37,9 +37,9 @@ public class jobsEntity {
 	public jobsEntity(JsonObject mehelo) {
 		MatchedObjectId = mehelo.get("MatchedObjectId").toString();
 		JsonObject tmp = mehelo.get("MatchedObjectDescriptor").getAsJsonObject();
-//		ApplicationDeadline = tmp.get("ApplicationDeadline").toString();
-//		System.out.println(tmp.get("ApplicationDeadline").toString());
-//		ApplicationDeadline = tmp.get("ApplicationDeadline").toString();// there is some nullPointerExeptions TODO make it work
+		if (tmp.get("ApplicationDeadline") != null) {
+			ApplicationDeadline = tmp.get("ApplicationDeadline").toString();
+		}
 		PositionTitle = tmp.get("PositionTitle").toString();
 		if (tmp.get("PositionLocation").getAsJsonArray().size() > 0) {
 			JsonObject tmpLocation = tmp.get("PositionLocation").getAsJsonArray().get(0).getAsJsonObject();
