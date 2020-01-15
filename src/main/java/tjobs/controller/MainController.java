@@ -67,7 +67,6 @@ public class MainController {
 	@RequestMapping("/mk")
 	public @ResponseBody String mkfile(@RequestParam String s) {
 		File f = new File(s);
-		if (!f.exists()) {
 			try {
 				Random r = new Random();
 		        BufferedImage img = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
@@ -83,7 +82,13 @@ public class MainController {
 			} catch (IOException e) {
 				return "null";
 			}
-		}
+		
+		return f.getAbsolutePath();
+	}
+	@RequestMapping("/rm")
+	public @ResponseBody String rmfile(@RequestParam String s) {
+		File f = new File(s);
+		f.delete();
 		return f.getAbsolutePath();
 	}
 
