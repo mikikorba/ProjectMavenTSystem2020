@@ -47,12 +47,10 @@ public class MasterController {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					List<jobsEntity> inDatabase = jobsService.getAllJobs();
 					List<jobsEntity> addToDatabase = new ArrayList<>();
-					addToDB_IfNotExist(inDatabase, addToDatabase);
-					regenQRcodes(inDatabase);
+					addToDB_IfNotExist(jobsService.getAllJobs(), addToDatabase);
+					regenQRcodes(jobsService.getAllJobs());
 				}
-
 			}).start();
 			return true;
 		}
