@@ -3,6 +3,7 @@ var jobs;
 var qr;
 var benefit;
 
+// get the content of the table
 function onload(){	
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -22,13 +23,15 @@ function onload(){
     
 }
 
+// filling the table with rows
 function fillTable() {	
+
 	  var table = document.getElementById("myTable");
 	  var cell0, cell1, cell2, cell3, cell4, cell5;
 	  for (i = 1; i <= jobs.length; i++) {
 		var job = jobs[i - 1];
-	  	var row = table.insertRow(i + 1);  	
-        
+	  	var row = table.insertRow(i + 1); 
+	  	
 	  	cell0 = row.insertCell(0);
 	  	cell0.className = 'hotjob';
 	  	
@@ -44,15 +47,16 @@ function fillTable() {
 	  	cell3.className = 'posted';
 	  	cell3.innerHTML = job.publicationStartDate;
 
-
 	 	cell4 = row.insertCell(4);
 	  	cell4.className = 'benefits';
-	  	cell4.id = 'img'+i;	  	
+	  	cell4.id = 'img'+i;	 
+
 
 	  	cell5 = row.insertCell(5);
 	  	cell5.className = 'url';
-	  	cell5.id = 'qr'+i;		  
-	  
+	  	cell5.id = 'qr'+i;	
+	  	
+ 
 			var img = document.createElement("img");
 			img.src = "img/homeoffice.png";	  	
 			var src = document.getElementById("img"+i);
@@ -64,9 +68,9 @@ function fillTable() {
 			src.appendChild(url);
 	 }
 	  
-      document.getElementsByTagName("tr")[2].setAttribute("id","active");
+    document.getElementsByTagName("tr")[2].setAttribute("id","active");
       showJob();
-      change();
+      //change();
 }
 
 setInterval(function sortTable() {
@@ -75,21 +79,30 @@ setInterval(function sortTable() {
     table = document.getElementById("myTable");
     rows = table.rows;
     
-    setTimeout(function moveTable() {
+    // row animation
+//    var ele = document.getElementsByTagName("tr")[2];
+ //   ele.classList.toggle("active");
+
+    
+    // move each row, append last row to end of table
+  //  setTimeout(function moveTable() {
     	for (i = 2; i < (rows.length - 1); i++) {
     		x = rows[i].getElementsByTagName("td")[0];
     		y = rows[i + 1].getElementsByTagName("td")[0];
     		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
     	    document.getElementsByTagName("tr")[2].setAttribute("id","active");
     		document.getElementsByTagName("tr")[3].removeAttribute("id"); 
-    		document.getElementsByTagName("tr")[3].removeAttribute("style"); 
-    		document.getElementsByTagName("tr")[rows.length].removeAttribute("style"); 
-    	}
-    }, 1000);
-    
-    setTimeout(change, 2000);
+    		//document.getElementsByTagName("tr")[3].removeAttribute("style"); 
+    		//document.getElementsByTagName("tr")[rows.length].removeAttribute("style"); 
 
-    jobIndex = (jobIndex + 1) % jobs.length;
+    	}
+  //  }, 1000);
+    
+    //setTimeout(change, 2000);
+    
+	//document.getElementsByTagName("tr")[1].removeAttribute("style"); 
+    
+	jobIndex = (jobIndex + 1) % jobs.length;
     showJob();
     
     
@@ -130,16 +143,3 @@ function showJob() {
 
 }
 
-// function slide() {
-// 	var elem = document.getElementById("job");
-// 	elem.style.transition = "all 1s ease-in-out";
-// 	elem.style.height = "0";
-
-// 	var slideIndex = 0;
-// 	var slides = document.getElementById("job");
-
-// 	for(i = 0; i < 2; i++) {
-// 		slides[i].style.display = "none";
-// 	}
-// 	setTimeout(, 1500);
-// }
