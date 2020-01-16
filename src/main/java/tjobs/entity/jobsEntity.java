@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import tjobs.utils.Hash;
@@ -33,6 +37,10 @@ public class jobsEntity {
 	private String CareerLevel = "";
 	private String PositionID = "";
 	private String ParentOrganizationName = "";
+
+	private String Requirements = "";
+	private String Description = "";
+	private String Email = "";
 
 	public jobsEntity() {
 	}
@@ -64,11 +72,19 @@ public class jobsEntity {
 			JobCategory = tmpJobCategory.get("Name").toString();
 		}
 		PublicationStartDate = tmp.get("PublicationStartDate").toString();
-		if (tmp.get("PositionBenefit").getAsJsonArray().size() > 0) {
-			JsonObject tmpPositionBenefit = tmp.get("PositionBenefit").getAsJsonArray().get(0).getAsJsonObject();
-			PositionBenefit_Code = tmpPositionBenefit.get("Code").toString();
-			PositionBenefit_Name = tmpPositionBenefit.get("Name").toString();
+
+		JsonArray benefitList = tmp.get("PositionBenefit").getAsJsonArray();
+		for (int i = 0; i < benefitList.size(); i++) {
+			if (i > 0) {
+
+				PositionBenefit_Code += ",";
+				PositionBenefit_Name += ",";
+			}
+			PositionBenefit_Code += clear(benefitList.get(i).getAsJsonObject().get("Code").toString());
+			PositionBenefit_Name += clear(benefitList.get(i).getAsJsonObject().get("Name").toString());
+
 		}
+
 		if (tmp.get("CareerLevel").getAsJsonArray().size() > 0) {
 			JsonObject tmpCareerLevel = tmp.get("CareerLevel").getAsJsonArray().get(0).getAsJsonObject();
 			CareerLevel = tmpCareerLevel.get("Name").toString();
@@ -89,13 +105,25 @@ public class jobsEntity {
 		ID = clear(ID);
 		JobCategory = clear(JobCategory);
 		PublicationStartDate = clear(PublicationStartDate);
-		PositionBenefit_Code = clear(PositionBenefit_Code);
-		PositionBenefit_Name = clear(PositionBenefit_Name);
 		CareerLevel = clear(CareerLevel);
 		PositionID = clear(PositionID);
 		ParentOrganizationName = clear(ParentOrganizationName);
 
-		LinkHash=Hash.fingerprintString(PositionURI) + ".png";
+		LinkHash = Hash.fingerprintString(PositionURI) + ".png";
+		try {
+
+			Document doc = Jsoup
+					.connect("https://t-systems.jobs/global-careers-en/jobs/sk/135465/ICT-Administrator-II/Kosice.html")
+					.get();
+System.out.println(PositionURI);
+			
+			Email = doc.select("a[data-title=\"contact-mail\"]").get(0).html();
+			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html();
+			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
