@@ -3,6 +3,7 @@ package tjobs.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Column;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,10 +38,27 @@ public class jobsEntity {
 	private String CareerLevel = "";
 	private String PositionID = "";
 	private String ParentOrganizationName = "";
-
+	@Column (length = 8000)
 	private String Requirements = "";
+	@Column (length = 8000)
 	private String Description = "";
 	private String Email = "";
+
+	public String getRequirements() {
+		return Requirements;
+	}
+
+	public void setRequirements(String requirements) {
+		Requirements = requirements;
+	}
+
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
 
 	public jobsEntity() {
 	}
@@ -117,7 +135,7 @@ public class jobsEntity {
 					.get();
 System.out.println(PositionURI);
 			
-			Email = doc.select("a[data-title=\"contact-mail\"]").get(0).html();
+			setEmail(doc.select("a[data-title=\"contact-mail\"]").get(0).html());
 			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html();
 			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html();
 		} catch (Exception e) {
@@ -299,6 +317,14 @@ System.out.println(PositionURI);
 
 	public void setParentOrganizationName(String parentOrganizationName) {
 		ParentOrganizationName = parentOrganizationName;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
 	}
 
 }
