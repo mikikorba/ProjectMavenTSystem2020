@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
-import tjobs.entity.jobsEntity;
+import tjobs.entity.Job;
 
 @Component
 @Transactional
@@ -16,14 +16,14 @@ public class jobsServiceJPA implements JobsService{
 	private EntityManager entityManager;
 
 	@Override
-	public void addComment(jobsEntity job) {
+	public void addComment(Job job) {
 		entityManager.persist(job);
 		
 	}
 
 	@Override
-	public List<jobsEntity> getAllJobs() {
-		return (List<jobsEntity>)entityManager.createQuery("select j from jobsEntity j").getResultList();
+	public List<Job> getAllJobs() {
+		return (List<Job>)entityManager.createQuery("select j from jobsEntity j").getResultList();
 	}
 
 }
