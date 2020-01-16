@@ -356,12 +356,24 @@ nav #title #nav-title {
     padding: 0 3.2vw;
 }
 
+#jobs table #tbody {
+	overflow: hidden;
+}
+
+@keyframes move {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
 #active {
-    background-color: #d00f61d6 !important;
-    color: white !important;
     position: relative;
     z-index: 99999;
-    height: 3.5vw; 
+    height: 3.5vw;
+    transition: background-color 0.2s;
 }
 
 #jobs table #active .job-title {
@@ -382,9 +394,9 @@ nav #title #nav-title {
 }
 
 #progress {
-    animation: loader 15s linear infinite;
+    animation: loader 8s linear infinite;
     width: 0;
-    background: #2400d2 !important;
+    background-color: #2400d2 !important;
     height: 3.5vw;
     position: absolute;
     z-index: 1;
@@ -392,6 +404,9 @@ nav #title #nav-title {
 
 @keyframes loader {
 	0% {
+		width: 0;
+	}
+	28% {
 		width: 0;
 	}
 	100% {

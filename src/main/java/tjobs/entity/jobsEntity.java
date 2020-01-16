@@ -9,7 +9,7 @@ import com.google.gson.JsonObject;
 import tjobs.utils.Hash;
 
 @Entity
-public class Job {
+public class jobsEntity {
 	@Id
 	@GeneratedValue
 	private int ident;
@@ -34,10 +34,10 @@ public class Job {
 	private String PositionID = "";
 	private String ParentOrganizationName = "";
 
-	public Job() {
+	public jobsEntity() {
 	}
 
-	public Job(JsonObject mehelo) {
+	public jobsEntity(JsonObject mehelo) {
 		MatchedObjectId = mehelo.get("MatchedObjectId").toString();
 		JsonObject tmp = mehelo.get("MatchedObjectDescriptor").getAsJsonObject();
 		if (tmp.get("ApplicationDeadline") != null) {

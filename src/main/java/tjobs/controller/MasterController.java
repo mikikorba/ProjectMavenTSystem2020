@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import tjobs.entity.Job;
+import tjobs.entity.jobsEntity;
 import tjobs.utils.Hash;
 import tjobs.utils.qrCodeGen;
 
@@ -47,8 +47,8 @@ public class MasterController {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					List<Job> inDatabase = jobsService.getAllJobs();
-					List<Job> addToDatabase = new ArrayList<>();
+					List<jobsEntity> inDatabase = jobsService.getAllJobs();
+					List<jobsEntity> addToDatabase = new ArrayList<>();
 					addToDB_IfNotExist(inDatabase, addToDatabase);
 					regenQRcodes(inDatabase);
 				}
@@ -59,12 +59,12 @@ public class MasterController {
 		return false;
 	}
 
-	private void addToDB_IfNotExist(List<Job> inDatabase, List<Job> addToDatabase) {
+	private void addToDB_IfNotExist(List<jobsEntity> inDatabase, List<jobsEntity> addToDatabase) {
 		boolean executeAdding = true;
 		try {
 			JsonArray tmp = getAsJsonArray();
 			for (int i = 0; i < tmp.size(); i++) {
-				addToDatabase.add(new Job(tmp.get(i).getAsJsonObject()));
+				addToDatabase.add(new jobsEntity(tmp.get(i).getAsJsonObject()));
 			}
 			if (addToDatabase.isEmpty()) {
 				executeAdding = false;
@@ -74,9 +74,9 @@ public class MasterController {
 			executeAdding = false;
 		}
 		if (executeAdding) {
-			for (Job je : addToDatabase) {
+			for (jobsEntity je : addToDatabase) {
 				boolean add = true;
-				for (Job dat : inDatabase) {
+				for (jobsEntity dat : inDatabase) {
 					if (je.getID().equals(dat.getID())) {
 						add = false;
 					}
@@ -91,7 +91,7 @@ public class MasterController {
 		}
 	}
 
-	private void regenQRcodes(List<Job> inDatabase) {
+	private void regenQRcodes(List<jobsEntity> inDatabase) {
 		boolean isLinux = java.lang.System.getProperties().getProperty("os.name").equalsIgnoreCase("linux");
 		String prefix = "src/main/resources/static/qrCodes/";
 		if (isLinux) {
@@ -106,7 +106,7 @@ public class MasterController {
 			f.delete();
 		}
 		f.mkdirs();
-		for (Job je : inDatabase) {
+		for (jobsEntity je : inDatabase) {
 			qrCodeGen.qrFromURLtoFile("https://t-systems.jobs/global-careers-en/" + je.getPositionURI(), 1000,
 					prefix + Hash.fingerprintString(je.getPositionURI()) + ".png");
 		}

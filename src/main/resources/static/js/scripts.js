@@ -63,32 +63,44 @@ function fillTable() {
 			var src = document.getElementById("qr"+i);
 			src.appendChild(url);
 	 }
+	  
       document.getElementsByTagName("tr")[2].setAttribute("id","active");
-
       showJob();
+      s();
 }
 
 setInterval(function sortTable() {
-
 	
+	var active = document.getElementById("active");
+
     var table, rows, style, i, x, y;
     table = document.getElementById("myTable");
     rows = table.rows;
-  
-    for (i = 2; i < (rows.length - 1); i++) {
-        x = rows[i].getElementsByTagName("td")[0];
-        y = rows[i + 1].getElementsByTagName("td")[0];
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        document.getElementsByTagName("tr")[2].setAttribute("id","active");
-        document.getElementsByTagName("tr")[3].removeAttribute("id");        
-    }
     
+    setTimeout(function moveTable() {
+    	for (i = 2; i < (rows.length - 1); i++) {
+    		x = rows[i].getElementsByTagName("td")[0];
+    		y = rows[i + 1].getElementsByTagName("td")[0];
+    		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    	    document.getElementsByTagName("tr")[2].setAttribute("id","active");
+    		document.getElementsByTagName("tr")[3].removeAttribute("id"); 
+    		document.getElementsByTagName("tr")[3].removeAttribute("style"); 
+    		document.getElementsByTagName("tr")[rows.length].removeAttribute("style"); 
+    	}
+    }, 1000);
+    
+    setTimeout(s, 2000);
+
     jobIndex = (jobIndex + 1) % jobs.length;
     showJob();
-//    slide();
     
     
-}, 15000);
+}, 8000);
+
+function s(){
+	active.style.background = "#d00f61d6";
+	active.style.color = "white";
+}
 
 function showJob() {
 	

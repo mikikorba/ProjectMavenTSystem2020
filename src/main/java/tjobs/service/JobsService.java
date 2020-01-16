@@ -2,12 +2,12 @@ package tjobs.service;
 
 import java.util.List;
 
-import tjobs.entity.Job;
+import tjobs.entity.jobsEntity;
 
 public interface JobsService {
 
-	void addComment(Job job);
+	void addComment(jobsEntity job);
 
-	List<Job> getAllJobs();
+	List<jobsEntity> getAllJobs();
 
 }
