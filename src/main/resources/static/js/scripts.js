@@ -71,6 +71,7 @@ function fillTable() {
     document.getElementsByTagName("tr")[2].setAttribute("id","active");
       showJob();
       //change();
+      
 }
 
 setInterval(function sortTable() {
