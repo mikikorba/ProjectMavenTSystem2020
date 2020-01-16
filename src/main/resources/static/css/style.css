@@ -16,7 +16,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-  overflow: hidden;
+  	overflow: hidden;
 }
 
 h4, p, a, ol, li {
@@ -103,6 +103,7 @@ nav #title #nav-title {
 /* CURRENT JOB'S CONTIANER */
 #job {
 }
+
 
 /* CURRENT JOB'S HEADER SECTION */
 #job #job-header {
