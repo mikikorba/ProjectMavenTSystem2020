@@ -131,9 +131,8 @@ public class jobsEntity {
 		try {
 
 			Document doc = Jsoup
-					.connect("https://t-systems.jobs/global-careers-en/jobs/sk/135465/ICT-Administrator-II/Kosice.html")
+					.connect("https://t-systems.jobs/global-careers-en/"+PositionURI)
 					.get();
-System.out.println(PositionURI);
 			
 			setEmail(doc.select("a[data-title=\"contact-mail\"]").get(0).html());
 			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html();
