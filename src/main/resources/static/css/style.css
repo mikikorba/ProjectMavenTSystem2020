@@ -356,19 +356,6 @@ nav #title #nav-title {
     padding: 0 3.2vw;
 }
 
-#jobs table #tbody {
-	overflow: hidden;
-}
-
-@keyframes move {
-	0% {
-		width: 0;
-	}
-	100% {
-		width: 100%;
-	}
-}
-
 #active {
     position: relative;
     z-index: 99999;
@@ -406,7 +393,7 @@ nav #title #nav-title {
 	0% {
 		width: 0;
 	}
-	28% {
+	30% {
 		width: 0;
 	}
 	100% {

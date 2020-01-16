@@ -66,13 +66,11 @@ function fillTable() {
 	  
       document.getElementsByTagName("tr")[2].setAttribute("id","active");
       showJob();
-      s();
+      change();
 }
 
 setInterval(function sortTable() {
 	
-	var active = document.getElementById("active");
-
     var table, rows, style, i, x, y;
     table = document.getElementById("myTable");
     rows = table.rows;
@@ -89,7 +87,7 @@ setInterval(function sortTable() {
     	}
     }, 1000);
     
-    setTimeout(s, 2000);
+    setTimeout(change, 2000);
 
     jobIndex = (jobIndex + 1) % jobs.length;
     showJob();
@@ -97,7 +95,8 @@ setInterval(function sortTable() {
     
 }, 8000);
 
-function s(){
+function change(){
+	var active = document.getElementById("active");
 	active.style.background = "#d00f61d6";
 	active.style.color = "white";
 }
