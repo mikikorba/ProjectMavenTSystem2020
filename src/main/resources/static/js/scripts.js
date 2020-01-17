@@ -103,19 +103,17 @@ setInterval(function sortTable() {
 							.removeAttribute("style");
 					document.getElementsByTagName("tr")[rows.length - 1]
 							.removeAttribute("style");
-
 				}
+				showJob();
 			}, 1000);
 
 	setTimeout(change, 2000);
 
 	jobIndex = (jobIndex + 1) % jobs.length;
 	
-	removebenefitImg()
-
-	showJob();
+	removebenefitImg();
 	
-}, 1000);
+}, 8000);
 
 // change the active row's style to pink with white text
 function change() {
@@ -134,38 +132,27 @@ function benefitsText() {
 	}
 }
 
+// fills the benefit ul list with images corresponding to each benefit
 function benefitsImg() {
-//	
-//	var str = jobs[jobIndex].positionBenefit_Code;
-//	var res = str.split(",");
-//
-//	for (i = 0; i < res.length; i++) {
-//
-//		this["marker" + i] = document.createElement("img");
-//		this["marker" + i].src = "img/" + res[i] + ".png";
-//		var doc = document.getElementById("benefit-list" + i);
-//		doc.appendChild(this["marker" + i]);
-//	}
 	
-	var str = job.positionBenefit_Code;
+	var str = jobs[jobIndex].positionBenefit_Code;
 	var res = str.split(",");
 
-	for (j = 0; j < res.length; j++) {
-		this["img" + j] = document.createElement("img");
-		if (job.positionBenefit_Code && res[j] !== undefined) 
-			this["img" + j].src = "img/" + res[j] + ".png";
+	for (i = 0; i < res.length; i++) {
 
-		var src = document.getElementById("img" + i);
-		src.appendChild(this["img" + j]);
+		this["marker" + i] = document.createElement("img");
+		this["marker" + i].src = "img/" + res[i] + ".png";
+		var doc = document.getElementById("benefit-list" + i);
+		doc.appendChild(this["marker" + i]);
 	}
 }
 
 // removes previously filled images of benefits from the benefit ul list
 function removebenefitImg() {
-	for (i = 0; i < 3; i++) {
-//		var spa = document.getElementById("benefit-list" + i);
-//		spa.removeChild(spa.childNodes[0]);
-//		
+	for (i = 0; i < 4; i++) {
+		var spa = document.getElementById("benefit-list" + i);
+		spa.removeChild(spa.childNodes[0]);
+		
 		var spb = document.getElementById("benefits" + i);
 		spb.removeChild(spb.childNodes[0]);
 	}
