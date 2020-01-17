@@ -213,12 +213,25 @@ nav #title #nav-title {
     height: 5vw;
     overflow: hidden;
     margin-top: 0.8vw;
-
+    display: inline-block;
 } 
 
 #job .job-details .job-detail-left #table .desc-benefit-text ul {
     margin: 0.2vw;
 } 
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul img {
+    width: 1vw;
+    margin-right: 0.2vw;
+} 
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul span {
+	display: inline-block;
+}
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul h4 {
+	display: inline-block;
+}
 
 #job .job-details .job-detail-left  #table .desc-benefit-text .benefit {
     display: inline-block;
@@ -281,7 +294,7 @@ nav #title #nav-title {
 
 /* current job's right side container fill text*/
 #job .job-details .job-detail-right .your .detail-text {
-    padding: 0.5vw 1vw;
+    padding: 0 1vw 0.5vw 1vw;
     height: 8vw;
     overflow: hidden;
 }

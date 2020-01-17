@@ -77,8 +77,8 @@ function fillTable() {
 	}
 
 	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
+	change();
 	showJob();
-	// change();
 
 }
 
@@ -88,41 +88,91 @@ setInterval(function sortTable() {
 	table = document.getElementById("myTable");
 	rows = table.rows;
 
-	// row animation
-	// var ele = document.getElementsByTagName("tr")[2];
-	// ele.classList.toggle("active");
-
 	// move each row, append last row to end of table
-	// setTimeout(function moveTable() {
-	for (i = 2; i < (rows.length - 1); i++) {
-		x = rows[i].getElementsByTagName("td")[0];
-		y = rows[i + 1].getElementsByTagName("td")[0];
-		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-		document.getElementsByTagName("tr")[2].setAttribute("id", "active");
-		document.getElementsByTagName("tr")[3].removeAttribute("id");
-		// document.getElementsByTagName("tr")[3].removeAttribute("style");
-		// document.getElementsByTagName("tr")[rows.length].removeAttribute("style");
+	setTimeout(
+			function moveTable() {
+				for (i = 2; i < (rows.length - 1); i++) {
+					x = rows[i].getElementsByTagName("td")[0];
+					y = rows[i + 1].getElementsByTagName("td")[0];
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					document.getElementsByTagName("tr")[2].setAttribute("id",
+							"active");
+					document.getElementsByTagName("tr")[3]
+							.removeAttribute("id");
+					document.getElementsByTagName("tr")[3]
+							.removeAttribute("style");
+					document.getElementsByTagName("tr")[rows.length - 1]
+							.removeAttribute("style");
 
-	}
-	// }, 1000);
+				}
+			}, 1000);
 
-	// setTimeout(change, 2000);
-
-	// document.getElementsByTagName("tr")[1].removeAttribute("style");
+	setTimeout(change, 2000);
 
 	jobIndex = (jobIndex + 1) % jobs.length;
+	
+	removebenefitImg()
+
 	showJob();
+	
+}, 1000);
 
-}, 8000);
-
+// change the active row's style to pink with white text
 function change() {
 	var active = document.getElementById("active");
 	active.style.background = "#d00f61d6";
 	active.style.color = "white";
 }
 
-function showJob() {
+// fills the benefit ul list with text in the job section
+function benefitsText() {
+	var str = jobs[jobIndex].positionBenefit_Code;
+	var res = str.split(",");
 
+	for (i = 0; i < res.length; i++) {
+		document.getElementById("benefits" + i).innerHTML = res[i];
+	}
+}
+
+function benefitsImg() {
+//	
+//	var str = jobs[jobIndex].positionBenefit_Code;
+//	var res = str.split(",");
+//
+//	for (i = 0; i < res.length; i++) {
+//
+//		this["marker" + i] = document.createElement("img");
+//		this["marker" + i].src = "img/" + res[i] + ".png";
+//		var doc = document.getElementById("benefit-list" + i);
+//		doc.appendChild(this["marker" + i]);
+//	}
+	
+	var str = job.positionBenefit_Code;
+	var res = str.split(",");
+
+	for (j = 0; j < res.length; j++) {
+		this["img" + j] = document.createElement("img");
+		if (job.positionBenefit_Code && res[j] !== undefined) 
+			this["img" + j].src = "img/" + res[j] + ".png";
+
+		var src = document.getElementById("img" + i);
+		src.appendChild(this["img" + j]);
+	}
+}
+
+// removes previously filled images of benefits from the benefit ul list
+function removebenefitImg() {
+	for (i = 0; i < 3; i++) {
+//		var spa = document.getElementById("benefit-list" + i);
+//		spa.removeChild(spa.childNodes[0]);
+//		
+		var spb = document.getElementById("benefits" + i);
+		spb.removeChild(spb.childNodes[0]);
+	}
+}
+
+function showJob() {
+	
 	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
 	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
 	document.getElementById("location").innerHTML = jobs[jobIndex].positionLocation_CityName
@@ -130,22 +180,15 @@ function showJob() {
 	document.getElementById("job-level").innerHTML = jobs[jobIndex].careerLevel;
 	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
 	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
-	document.getElementById("benefits").innerHTML = jobs[jobIndex].positionBenefit_Name;
+	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
+	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
+	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
+
+	benefitsImg();
+	benefitsText();
 
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	var src = document.getElementById("code");
 	src.appendChild(qr);
-
-	benefit.src = "img/" + jobs[jobIndex].positionBenefit_Code + ".png";
-	var doc = document.getElementById("benefit-list");
-	doc.appendChild(benefit);
-
-	//	
-	// for (i = 0; i < images.length; i++) {
-	// if (images == "homeoffice.png") {
-	// benefti.src = "img/"+benefitIMAGE;
-	// var ben = document.getElementById("benefit-list");
-	// ben.appendChild(qr);
-	// }
 
 }
