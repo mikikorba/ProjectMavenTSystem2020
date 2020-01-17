@@ -76,7 +76,7 @@ function fillTable() {
 	  
     document.getElementsByTagName("tr")[2].setAttribute("id","active");
       showJob();
-      //change();
+      change();
       
 }
 
@@ -86,28 +86,23 @@ setInterval(function sortTable() {
     table = document.getElementById("myTable");
     rows = table.rows;
     
-    // row animation
-//    var ele = document.getElementsByTagName("tr")[2];
- //   ele.classList.toggle("active");
-
     
     // move each row, append last row to end of table
-  //  setTimeout(function moveTable() {
+    setTimeout(function moveTable() {
     	for (i = 2; i < (rows.length - 1); i++) {
     		x = rows[i].getElementsByTagName("td")[0];
     		y = rows[i + 1].getElementsByTagName("td")[0];
     		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
     	    document.getElementsByTagName("tr")[2].setAttribute("id","active");
     		document.getElementsByTagName("tr")[3].removeAttribute("id"); 
-    		//document.getElementsByTagName("tr")[3].removeAttribute("style"); 
-    		//document.getElementsByTagName("tr")[rows.length].removeAttribute("style"); 
+    		document.getElementsByTagName("tr")[3].removeAttribute("style"); 
+    		document.getElementsByTagName("tr")[rows.length-1].removeAttribute("style"); 
 
     	}
-  //  }, 1000);
+  	}, 1000);
     
-    //setTimeout(change, 2000);
+    setTimeout(change, 2000);
     
-	//document.getElementsByTagName("tr")[1].removeAttribute("style"); 
     
 	jobIndex = (jobIndex + 1) % jobs.length;
     showJob();
@@ -130,7 +125,10 @@ function showJob() {
 	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
 	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
 	document.getElementById("benefits").innerHTML = jobs[jobIndex].positionBenefit_Name;
-	
+	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
+	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
+	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
+
 
 	qr.src = "qrCodes/"+ jobs[jobIndex].linkHash;
 	var src = document.getElementById("code");

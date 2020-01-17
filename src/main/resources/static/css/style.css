@@ -354,15 +354,17 @@ nav #title #nav-title {
     width: 100%;
     text-align: left;
     padding: 0 3.2vw;
+    z-index: 99999;
 }
 
 #active {
-	
     position: relative;
     z-index: 99999;
     height: 3.5vw;
-	background: #d00f61d6;
-	color: white;
+    transition: background 0.2s;
+    transition: height 0.2s;
+/* 	background: #d00f61d6; */
+/* 	color: white; */
 }
 
 #jobs table #active .job-title {
@@ -389,7 +391,7 @@ nav #title #nav-title {
     height: 3.5vw;
     position: absolute;
     z-index: 1;
-
+    transition: height 0.2s;
 }
 
 @keyframes loader {

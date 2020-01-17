@@ -15,7 +15,7 @@ body{
 .obj{
   width: 6px;
   height: 40px;
-  background: #FF00FF;
+  background: #e20074;
   margin: 0 3px;
   border-radius: 10px;
   animation: loading 0.8s infinite;
