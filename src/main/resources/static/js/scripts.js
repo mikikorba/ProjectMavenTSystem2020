@@ -59,30 +59,8 @@ function fillTable() {
  
 			var img = document.createElement("img");
 			
-			if (job.positionBenefit_Code == "homeoffice") {
-				img.src = "img/homeoffice.png";
-			} else if (job.positionBenefit_Code=="kindergarten") {
-				img.src = "img/kindergarten.png";
-			} else if (job.positionBenefit_Code == "public_transportation") {
-				img.src = "img/public_transportation.png";
-			} else if (job.positionBenefit_Code == "canteen") {
-				img.src = "img/canteen.png";
-			} else if (job.positionBenefit_Code == "flextime") {
-				img.src = "img/flextime.png";
-			} else if (job.positionBenefit_Code == "workshops") {
-				img.src = "img/workshops.png";
-			} else if (job.positionBenefit_Code == "pension") {
-				img.src = "img/pension.png";
-			} else if (job.positionBenefit_Code == "discounts") {
-				img.src = "img/discounts.png";
-			} else if (job.positionBenefit_Code == "health_offers") {
-				img.src = "img/health_offers.png";
-			} else if (job.positionBenefit_Code == "food_bonus") {
-				img.src = "img/food_bonus.png";
-			} else if (job.positionBenefit_Code == "parking") {
-				img.src = "img/parking.png";
-			} else if (job.positionBenefit_Code == "onboarding") {
-				img.src = "img/onboarding.png";
+			if (job.positionBenefit_Code) {
+				img.src = "img/"+job.positionBenefit_Code+".png";
 			} else {
 				img.src = "";
 			}
