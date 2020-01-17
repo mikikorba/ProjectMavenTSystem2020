@@ -89,8 +89,7 @@ setInterval(function sortTable() {
 	rows = table.rows;
 
 	// move each row, append last row to end of table
-	setTimeout(
-			function moveTable() {
+	setTimeout( function moveTable() {
 				for (i = 2; i < (rows.length - 1); i++) {
 					x = rows[i].getElementsByTagName("td")[0];
 					y = rows[i + 1].getElementsByTagName("td")[0];
@@ -124,7 +123,7 @@ function change() {
 
 // fills the benefit ul list with text in the job section
 function benefitsText() {
-	var str = jobs[jobIndex].positionBenefit_Code;
+	var str = jobs[jobIndex].positionBenefit_Name;
 	var res = str.split(",");
 
 	for (i = 0; i < res.length; i++) {
