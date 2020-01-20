@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap&subset=latin-ext');
 
 body {
-	background: #ffffff !important;
+	background: #000000 !important;
     padding: 0;
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
     scroll-behavior: smooth;
     -webkit-scroll-behavior: smooth;
+    color: white;
 }
 
 body::-webkit-scrollbar { 
@@ -20,7 +21,7 @@ body {
 }
 
 h4, p, a, ol, li {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 h1 {
@@ -88,7 +89,7 @@ nav #title {
 }
 
 nav #title #nav-title {
-    font-weight: 400 !important;
+    font-weight: 300 !important;
     text-transform: uppercase;
     text-align: right;
     line-height: 0;
@@ -128,7 +129,7 @@ nav #title #nav-title {
 /* gradient on the background */
 #job #job-header::after {
     display: block;
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 88%);
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #000 88%);
     margin-top: -15vw;
     margin-left: 38vw;
     width: 30vw;
@@ -269,6 +270,7 @@ nav #title #nav-title {
 /* current job's qr code image */ 
 #job .job-details .job-detail-left #qr-code #code .code {
     width: 11vw;
+    filter: invert(1);
 }
 
 /* current job's right section*/
@@ -297,7 +299,8 @@ nav #title #nav-title {
 
 #job .job-details .job-detail-right .your .detail-title h2 {
     line-height: 0;
-    color: #e20074;
+    font-weight: 400;
+    color: white;
     text-transform: uppercase;
 }
 
@@ -334,7 +337,6 @@ nav #title #nav-title {
 }
 
 #jobs table #active .job-title {
-    font-weight: 700 !important;
     text-transform: uppercase; 
 }
 
@@ -350,7 +352,7 @@ nav #title #nav-title {
 #progress {
     animation: loader 8s linear infinite;
     width: 0;
-    background-color: #2400d2 !important;
+    background-color: #fd0000 !important;
     height: 3.5vw;
     position: absolute;
     z-index: 1;
@@ -374,11 +376,11 @@ nav #title #nav-title {
 } */
 
 .odd{
-	background-color: #c6c6c673;
+	background-color: #35353573;
 } 
 
 #jobs table thead tr {
-    background: white !important;
+    background: black !important;
 }
 
 #jobs table .hotjob {
@@ -422,6 +424,7 @@ nav #title #nav-title {
 
 #jobs table .url img {
     width: 2.5vw;
+    filter: invert(1);
 }
 
 /* RESPONSIVENESS */
@@ -478,7 +481,7 @@ nav #title #nav-title {
     }
     
     #job #job-header::after {
-        background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 58%);
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #000 58%);
         margin-top: -16vw;
         margin-left: 0vw;
         width: 80vw;
