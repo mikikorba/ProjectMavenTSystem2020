@@ -85,11 +85,9 @@ function fillTable() {
 	change();
 	showJob();
 
-	//
+	// sets a grey background for every odd row in the jobs list table
 	for (i = 1; i < jobs.length; i++)
 		document.getElementsByTagName("tr")[i + i].setAttribute("class", "odd");
-	
-	
 }
 
 
@@ -139,6 +137,7 @@ function change() {
 	var active = document.getElementById("active");
 	active.style.transition = "background-color 0.2s";
 	active.style.transition = "height 0.2s";
+	removeOpacity()
 }
 
 // slide animation of the first two rows
@@ -147,6 +146,8 @@ function slide() {
 	active.style.height = "0";
 	
 	document.getElementById("progress").style.height = "0";
+	document.getElementById("job").style.animation = "opacity 1s linear";
+
 }
 
 
@@ -189,7 +190,6 @@ function removebenefitImg() {
 function showJob() {
 	
 	// adds css animation for fade effect
-	document.getElementById("job").style.animation = "opacity 1s linear";
 
 	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
 	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
@@ -209,12 +209,13 @@ function showJob() {
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	var src = document.getElementById("code");
 	src.appendChild(qr);
-
-	// removes previously added style for fade animation every 2 seconds
-	setInterval(function removeOpacity(){
-		document.getElementById("job").removeAttribute("style");
-	}, 5000)
 }
+
+// removes previously added style for fade animation every 6 seconds
+function removeOpacity(){
+	document.getElementById("job").removeAttribute("style");
+}
+
 var x = 1;
 // swap style sheets
 setInterval(function style() {
