@@ -205,7 +205,9 @@ function addBenefitImgs() {
 		for (i = 0; i < res.length; i++) {
 
 			this["marker" + i] = document.createElement("img");
+			if (str && res[i] !== undefined) {
 			this["marker" + i].src = "img/" + res[i] + ".png";
+			}
 			var doc = document.getElementById("benefit-list" + i);
 			doc.appendChild(this["marker" + i]);
 	}
