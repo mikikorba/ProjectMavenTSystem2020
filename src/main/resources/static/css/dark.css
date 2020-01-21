@@ -297,7 +297,7 @@ nav #title #nav-title {
 
 /* current job's rounded container title */
 #job .job-details .job-detail-right .your .detail-title {
-    border-bottom: 1px dashed #515050;
+    border-bottom: 1px dashed #2d2d2d;
     padding: 0.2vw 1vw;
 }
 
@@ -571,11 +571,11 @@ nav #title #nav-title {
     
     #job .job-details .job-detail-right .your {
         width: 45.5vw;
-        height: 30.5vw;
+        height: 40.5vw;
     }
     
     #job .job-details .job-detail-right .your .detail-text {
-        height: 23.5vw;
+        height: 34vw;
     }
     
     #jobs {
@@ -585,6 +585,10 @@ nav #title #nav-title {
     #jobs table td {
     	height: 8vw;
     }
+    
+    .odd{
+	background-color: #59595973;
+    } 
     
     #jobs table .hotjob {
         width: 3vw;
@@ -636,6 +640,6 @@ nav #title #nav-title {
 
 @media (max-width: 1330px) and (min-width: 0px) {
     #job .job-details .job-detail-right .your {
-        width: 42%;
+        width: 45%;
     }
 }
