@@ -107,6 +107,9 @@ nav #title #nav-title {
 
 @keyframes opacity {
 	0% {
+		opacity: 100%;
+	}
+	50% {
 		opacity: 0;
 	}
 	100% {
@@ -331,6 +334,16 @@ nav #title #nav-title {
     overflow: hidden;
     height: 3.5vw;
   	background-color: #d00f61d6;
+  	animation: fade 0.4s linear;
+}
+
+@keyframes fade {
+	0% {
+		background: #ff000000;
+	}
+	100% {
+		background: #d00f61d6;
+	}
 }
 
 #jobs table #active .job-title {
@@ -367,11 +380,6 @@ nav #title #nav-title {
 		width: 100%;
 	}
 }
-
-/* the stripes styling for the table */
-/* #jobs table tr:nth-child(odd) {
-    background-color: #c6c6c673;
-} */
 
 .odd{
 	background-color: #c6c6c673;

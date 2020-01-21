@@ -3,7 +3,9 @@ var jobs;
 var qr;
 var benefit;
 
-// get the content of the table
+// ONLOAD FUNCTION
+//
+// get the content for the whole site
 function onload() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -23,13 +25,16 @@ function onload() {
 
 }
 
-// filling the table with rows first time the page is displayed
+// FUNCTIONS FOR FILLIN THE WHOLE SITE 
+//
+// filling the table with rows first time when the page is displayed
 function fillTable() {
 
+	var cell0, cell1, cell2, cell3, cell4, cell5;
 	var table = document.getElementById("myTable");
-	var cell0, cell1, cell2, cell3, cell4, cell5, rows;
-	rows = table.rows;
+	var rows = table.rows;
 	
+	// loop for filling the jobs list with columns (cells)
 	for (i = 1; i <= jobs.length; i++) {
 		var job = jobs[i - 1];
 		var row = table.insertRow(i + 1);
@@ -58,9 +63,10 @@ function fillTable() {
 		cell5.className = 'url';
 		cell5.id = 'qr' + i;
 
+		// loop for filling the list of benefits with icons within the jobs list	
 		var str = job.positionBenefit_Code;
 		var res = str.split(",");
-
+		
 		for (j = 0; j < res.length; j++) {
 			this["img" + j] = document.createElement("img");
 			if (job.positionBenefit_Code && res[j] !== undefined) {
@@ -72,6 +78,7 @@ function fillTable() {
 			src.appendChild(this["img" + j]);
 		}
 
+		// adds qr code to the job in the jobs list table
 		var url = document.createElement("img");
 		url.src = "qrCodes/" + jobs[jobIndex].linkHash;
 		var src = document.getElementById("qr" + i);
@@ -79,11 +86,11 @@ function fillTable() {
 				
 	}
 
-	// sets the second / "active" line with background and font color
+	// sets up the second / "active" line with background and font color
 	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
 	
-	change();
-	showJob();
+	activeRowStyle();
+	getJobDetails();
 
 	// sets a grey background for every odd row in the jobs list table
 	for (i = 1; i < jobs.length; i++)
@@ -91,8 +98,12 @@ function fillTable() {
 }
 
 
-// function to fill every 8 sec (based on the first / "progress" row's css animation) as a job changes in the jobs list
+// FUNCTIONS FOR THE JOBS LIST TABLE
+//
+// function to move the row and fill the job every 8 second
 setInterval(function sortTable() {
+	
+	jobIndex = (jobIndex + 1) % jobs.length;
 	
 	var table, rows, style, i, x, y;
 	table = document.getElementById("myTable");
@@ -117,42 +128,67 @@ setInterval(function sortTable() {
 				}
 			}, 1000);
 
-	// timer to change the second / active row's style with a 2 sec delay
-	setTimeout(change, 2000);
+	// timer to change the "active" row's style with a 2 sec delay
+	setTimeout(activeRowStyle, 2000);
 
-	// timer to change the fill of the current job's details with the next one 
-	// with 1 mil.sec delay right after the removebenefitImg function
-	setTimeout(showJob, 1);
+	// timer to change the fill of the job section based on the jobs list 
+	// with 1 mil.sec delay right after the benefit icons have been removed
+	setTimeout(getJobDetails, 500);
 	
-	slide();	
-	jobIndex = (jobIndex + 1) % jobs.length;
+	activeRowSlide();	
 	
-	// clears the benefit list from the currently displayed job's detail section
-	removebenefitImg();
+	// clears the benefit list from the job section
+	removeBenefitImgs();
 	
 }, 8000);
 
-// style change animation on the second / active row
-function change() {
-	var active = document.getElementById("active");
-	active.style.transition = "background-color 0.2s";
-	active.style.transition = "height 0.2s";
-	removeOpacity()
-}
 
-// slide animation of the first two rows
-function slide() {
-	var active = document.getElementById("active");
-	active.style.height = "0";
+// adds animation to the "active" row in the jobs list
+function activeRowStyle() {
+	document.getElementById("active").style.transition = "height 0.2s";
 	
-	document.getElementById("progress").style.height = "0";
-	document.getElementById("job").style.animation = "opacity 1s linear";
-
+	// removes the fade effect from the job section
+	removeFadeEffect()
 }
 
 
-// fills the benefit ul list with text in the job section
-function benefitsText() {
+// adds slide up animation for the "active" and "progress" row in the jobs list
+// adds the fade animation for the job section
+function activeRowSlide() {
+	document.getElementById("active").style.height = "0";	
+	document.getElementById("progress").style.height = "0";
+
+	document.getElementById("job").style.animation = "opacity 1s linear";
+}
+
+// FUNCTIONS FOR THE JOB SECTION
+//
+// fills the actual job section based on the jobs list table
+function getJobDetails() {
+
+	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
+	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
+	document.getElementById("location").innerHTML = jobs[jobIndex].positionLocation_CityName
+			+ ", " + jobs[jobIndex].positionLocation_CountryName;
+	document.getElementById("job-level").innerHTML = jobs[jobIndex].careerLevel;
+	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
+	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
+	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
+	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
+	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
+
+	// filling the benefit ul list with images and text
+	addBenefitImgs();
+	addBenefitTexts();
+
+	// adds the big qr code to the job section
+	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
+	var src = document.getElementById("code");
+	src.appendChild(qr);
+}
+
+//fills the benefit ul list with text in the job section
+function addBenefitTexts() {
 	var str = jobs[jobIndex].positionBenefit_Name;
 	var res = str.split(",");
 
@@ -161,8 +197,8 @@ function benefitsText() {
 	}
 }
 
-// fills the benefit ul list with images corresponding to each benefit
-function benefitsImg() {	
+// fills the benefit ul list with icons corresponding to each benefit
+function addBenefitImgs() {	
 	var str = jobs[jobIndex].positionBenefit_Code;
 	var res = str.split(",");
 	
@@ -176,7 +212,7 @@ function benefitsImg() {
 }
 
 // removes previously filled images of benefits from the benefit ul list
-function removebenefitImg() {
+function removeBenefitImgs() {
 	for (i = 0; i < 4; i++) {
 		var spa = document.getElementById("benefit-list" + i);
 		spa.removeChild(spa.childNodes[0]);
@@ -186,47 +222,24 @@ function removebenefitImg() {
 	}
 }
 
-// fills the currently displayed job's details
-function showJob() {
-	
-	// adds css animation for fade effect
-
-	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
-	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
-	document.getElementById("location").innerHTML = jobs[jobIndex].positionLocation_CityName
-			+ ", " + jobs[jobIndex].positionLocation_CountryName;
-	document.getElementById("job-level").innerHTML = jobs[jobIndex].careerLevel;
-	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
-	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
-	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
-	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
-	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
-
-	// for filling the benefit list with images and text
-	benefitsImg();
-	benefitsText();
-
-	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
-	var src = document.getElementById("code");
-	src.appendChild(qr);
-}
-
-// removes previously added style for fade animation every 6 seconds
-function removeOpacity(){
+// removes previously added style for fade animation
+function removeFadeEffect(){
 	document.getElementById("job").removeAttribute("style");
 }
 
-var x = 1;
-// swap style sheets
-setInterval(function style() {
 
-	
+// DARK MODE FUNCTION
+//
+//swap style sheets to dark mode and back
+ var x = 1;
+
+setInterval(function style() {
 	if (x == 1) {
-		document.getElementById('pagestyle').setAttribute('href', "css/style.css");
+		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
 		x--;
 	} else if (x == 0) {
-		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");		
+		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
 		x++;
 	}
-}, 15000);
+}, 40000);
 

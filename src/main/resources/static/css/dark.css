@@ -9,7 +9,7 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
     scroll-behavior: smooth;
     -webkit-scroll-behavior: smooth;
-    color: white;
+    color: #e8e6e3;
 }
 
 body::-webkit-scrollbar { 
@@ -50,6 +50,7 @@ p, ul, li {
 
 .link {
     text-decoration: underline;
+    color: white;
 }
 
 #hide {
@@ -108,6 +109,9 @@ nav #title #nav-title {
 
 @keyframes opacity {
 	0% {
+		opacity: 100%;
+	}
+	50% {
 		opacity: 0;
 	}
 	100% {
@@ -284,7 +288,7 @@ nav #title #nav-title {
 /* current job's right container with rounded corners*/
 #job .job-details .job-detail-right .your {
     width: 21.5vw;
-    border: 1px solid #b2b2b2;
+    border: 1px solid #515050;
     border-radius: 8px;
     padding: 5px;
     margin: 0.2vw 0.8vw;
@@ -293,7 +297,7 @@ nav #title #nav-title {
 
 /* current job's rounded container title */
 #job .job-details .job-detail-right .your .detail-title {
-    border-bottom: 1px dashed #b2b2b2;
+    border-bottom: 1px dashed #515050;
     padding: 0.2vw 1vw;
 }
 
@@ -334,6 +338,16 @@ nav #title #nav-title {
     overflow: hidden;
     height: 3.5vw;
   	background-color: #d00f61d6;
+  	animation: fade 0.4s linear;
+}
+
+@keyframes fade {
+	0% {
+		background: #00000000;
+	}
+	100% {
+		background: #d00f61d6;
+	}
 }
 
 #jobs table #active .job-title {
