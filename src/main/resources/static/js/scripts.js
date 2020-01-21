@@ -233,15 +233,15 @@ function removeFadeEffect(){
 // DARK MODE FUNCTION
 //
 //swap style sheets to dark mode and back
- var x = 1;
-
-setInterval(function style() {
-	if (x == 1) {
-		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
-		x--;
-	} else if (x == 0) {
-		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
-		x++;
-	}
-}, 40000);
+// var x = 1;
+//
+//setInterval(function style() {
+//	if (x == 1) {
+//		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
+//		x--;
+//	} else if (x == 0) {
+//		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
+//		x++;
+//	}
+//}, 40000);
 
