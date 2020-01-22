@@ -3,7 +3,7 @@ var jobs;
 var qr;
 var benefit;
 
-// ONLOAD FUNCTION
+// ONLOAD FUNCTION 
 //
 // get the content for the whole site
 function onload() {
