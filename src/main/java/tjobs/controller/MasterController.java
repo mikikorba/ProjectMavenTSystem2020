@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,18 @@ public class MasterController {
 
 	@RequestMapping("")
 	public String index() {
-		return refreshDB() ? "loading" : "mainpage";
+		if (true) {
+//		if (refreshDB()) {
+
+			if (new Random().nextInt(5)==1) {
+//			if (new Random().nextInt(100)==1) {
+				return "loading2";
+			} else {
+				return "loading";
+			}
+		} else {
+			return "mainpage";
+		}
 	}
 
 	private boolean refreshDB() {
