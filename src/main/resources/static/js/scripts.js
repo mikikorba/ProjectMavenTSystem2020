@@ -230,18 +230,51 @@ function removeFadeEffect(){
 }
 
 
-// DARK MODE FUNCTION
+
+//DARK MODE FUNCTION
 //
 //swap style sheets to dark mode and back
-// var x = 1;
+var x = 1;
+
+setInterval(function style() {
+	if (x == 1) {
+		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
+		x--;
+	} else if (x == 0) {
+		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
+		x++;
+	}
+}, 40000);
+
+//OLA FUNCTIONS
 //
-//setInterval(function style() {
-//	if (x == 1) {
-//		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
-//		x--;
-//	} else if (x == 0) {
-//		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
-//		x++;
-//	}
-//}, 40000);
+//scrolls to the chosen row in the jobs list table
+
+var mqttClient = new Paho.MQTT.Client("openlab.kpi.fei.tuke.sk", 80, "TSDemo_" + new Date().getTime());
+mqttClient.onConnectionLost = onConnectionLost;
+mqttClient.onMessageArrived = onMessageArrived;
+mqttClient.connect({onSuccess: onConnect});
+
+function onConnect() {
+console.log("onConnect");
+mqttClient.subscribe("openlab/voice/recognition");
+}
+
+function onConnectionLost(responseObject) {
+if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:" + responseObject.errorMessage);
+}
+}
+
+function onMessageArrived(message) {
+console.log("onMessageArrived:" + message.topic + " " + message.payloadString);
+  var result = JSON.parse(message.payloadString);
+  if (result.status === 'recognized') {
+      var x = result.recognized;
+  }
+}
+
+
+function scrollToJob(number) {
+}
 
