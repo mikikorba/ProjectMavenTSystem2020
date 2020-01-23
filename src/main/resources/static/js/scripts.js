@@ -1,7 +1,7 @@
 var jobIndex = 0;
 var jobs;
 var qr;
-var qr6k;
+var qrk;
 var benefit;
 
 // ONLOAD FUNCTION 
@@ -39,9 +39,11 @@ function fillTable() {
 	for (i = 1; i <= jobs.length; i++) {
 		var job = jobs[i - 1];
 		var row = table.insertRow(i + 1);
-
+		
 		cell0 = row.insertCell(0);
 		cell0.className = 'hotjob';
+		cell0.id = i;
+		cell0.innerHTML = i;
 
 		cell1 = row.insertCell(1);
 		cell1.className = 'job-title';
@@ -84,18 +86,45 @@ function fillTable() {
 		url.src = "qrCodes/" + jobs[jobIndex].linkHash;
 		var src = document.getElementById("qr" + i);
 		src.appendChild(url);
-				
 	}
-
 	// sets up the second / "active" line with background and font color
 	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
 	
 	activeRowStyle();
 	getJobDetails();
-
+	
 	// sets a grey background for every odd row in the jobs list table
-	for (i = 1; i < jobs.length; i++)
+	for (i = 1; i <= jobs.length; i++)
 		document.getElementsByTagName("tr")[i + i].setAttribute("class", "odd");
+
+}
+
+//FUNCTIONS FOR THE JOB SECTION
+//
+// fills the actual job section based on the jobs list table
+function getJobDetails() {
+	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
+	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
+	document.getElementById("location").innerHTML = jobs[jobIndex].positionLocation_CityName
+			+ ", " + jobs[jobIndex].positionLocation_CountryName;
+	document.getElementById("job-level").innerHTML = jobs[jobIndex].careerLevel;
+	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
+	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
+	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
+	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
+	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
+
+	// filling the benefit ul list with images and text
+	addBenefitImgs();
+	addBenefitTexts();
+
+	// adds the big qr code to the job section
+	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
+	document.getElementById("code").appendChild(qr);
+	
+	var url = document.createElement("img");
+	url.src = "qrCodes/" + jobs[jobIndex].linkHash;
+	document.getElementById("code-6k").appendChild(url);
 }
 
 
@@ -162,37 +191,9 @@ function activeRowSlide() {
 	document.getElementById("job").style.animation = "opacity 1s linear";
 }
 
-// FUNCTIONS FOR THE JOB SECTION
+// BENEFITS 
 //
-// fills the actual job section based on the jobs list table
-function getJobDetails() {
-
-	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
-	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
-	document.getElementById("location").innerHTML = jobs[jobIndex].positionLocation_CityName
-			+ ", " + jobs[jobIndex].positionLocation_CountryName;
-	document.getElementById("job-level").innerHTML = jobs[jobIndex].careerLevel;
-	document.getElementById("type").innerHTML = jobs[jobIndex].jobCategory;
-	document.getElementById("deadline").innerHTML = jobs[jobIndex].publicationEndDate;
-	document.getElementById("position-uri").innerHTML = jobs[jobIndex].email;
-	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
-	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
-
-	// filling the benefit ul list with images and text
-	addBenefitImgs();
-	addBenefitTexts();
-
-	// adds the big qr code to the job section
-	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
-	var src = document.getElementById("code");
-	src.appendChild(qr);
-	
-	qr6k.src = "qrCodes/" + jobs[jobIndex].linkHash;
-	var crs = document.getElementById("code-6k");
-	crs.appendChild(qr6k);
-}
-
-//fills the benefit ul list with text in the job section
+// fills the benefit ul list with text in the job section
 function addBenefitTexts() {
 	var str = jobs[jobIndex].positionBenefit_Name;
 	var res = str.split(",");
@@ -221,11 +222,8 @@ function addBenefitImgs() {
 // removes previously filled images of benefits from the benefit ul list
 function removeBenefitImgs() {
 	for (i = 0; i < 4; i++) {
-		var spa = document.getElementById("benefit-list" + i);
-		spa.removeChild(spa.childNodes[0]);
-		
-		var spb = document.getElementById("benefits" + i);
-		spb.removeChild(spb.childNodes[0]);
+		document.getElementById("benefit-list" + i).innerHTML = "";
+		document.getElementById("benefits" + i).innerHTML = "";
 	}
 }
 
@@ -239,17 +237,17 @@ function removeFadeEffect(){
 //DARK MODE FUNCTION
 //
 //swap style sheets to dark mode and back
-var x = 1;
-
-setInterval(function style() {
-	if (x == 1) {
-		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
-		x--;
-	} else if (x == 0) {
-		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
-		x++;
-	}
-}, 10000);
+//var x = 1;
+//
+//setInterval(function style() {
+//	if (x == 1) {
+//		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
+//		x--;
+//	} else if (x == 0) {
+//		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
+//		x++;
+//	}
+//}, 40000);
 
 //OLA FUNCTIONS
 //
