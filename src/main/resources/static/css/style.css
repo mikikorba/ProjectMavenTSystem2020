@@ -51,14 +51,6 @@ p, ul, li {
     text-decoration: underline;
 }
 
-.hide {
-    display: block;
-}
-
-.show {
-    display: none;
-}
-
 /* HEADER WITH LOGO */
 nav {
     background: #e20074;
@@ -137,6 +129,16 @@ nav #title #nav-title {
     width: 30vw;
     content: '';
     z-index: 0;
+}
+
+/* qr code for 6k TV */
+#job #job-header #qr-code-6k {
+    display: none;
+}
+
+#job #job-header #qr-code-6k #code-6k {
+    width: 11vw;
+    filter: invert(1);
 }
 
 /* current job's details container */
@@ -381,7 +383,7 @@ nav #title #nav-title {
 	}
 }
 
-.odd{
+.odd {
 	background-color: #c6c6c673;
 } 
 
@@ -494,16 +496,16 @@ nav #title #nav-title {
         width: 80vw;
     }
     
-    #job #job-desc #desc .job-id {
+    #job #job-header #job-desc #desc .job-id {
         line-height: 0;
     }
     
-    #job-desc #job-title {
+    #job #job-header #job-desc #job-title {
         width: 45vw;
         line-height: 3.4vw;
     }
     
-    #job-desc #job-title h1 {
+    #job #job-header #job-desc #job-title h1 {
         font-size: 3.9vw;
     }
     
@@ -564,11 +566,11 @@ nav #title #nav-title {
     
     #job .job-details .job-detail-right .your {
         width: 45.5vw;
-        height: 30.5vw;
+        height: 40.5vw;
     }
     
     #job .job-details .job-detail-right .your .detail-text {
-        height: 23.5vw;
+        height: 34vw;
     }
     
     #jobs {
@@ -578,6 +580,10 @@ nav #title #nav-title {
     #jobs table td {
     	height: 8vw;
     }
+    
+    .odd{
+		background-color: #59595973;
+    } 
     
     #jobs table .hotjob {
         width: 3vw;
@@ -628,11 +634,20 @@ nav #title #nav-title {
     }
 } 
 
-@media (max-width: 1330px) and (min-width: 0px) {
+@media (max-width: 1330px) and (min-width: 500px) {
     #job .job-details .job-detail-right .your {
-        width: 42%;
+        width: 46%;
     }
+    
 }
+
+@media (max-width: 500px) and (min-width: 0px) {
+    #job .job-details .job-detail-right .your {
+        width: 45%;
+    }
+    
+}
+
 @media (min-width: 6000px){
     .show {
     	display: block;

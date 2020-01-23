@@ -38,8 +38,7 @@ public class MasterController {
 
 	@RequestMapping("")
 	public String index() {
-		if (true) {
-//		if (refreshDB()) {
+		if (refreshDB()) {
 
 			if (new Random().nextInt(5)==1) {
 //			if (new Random().nextInt(100)==1) {

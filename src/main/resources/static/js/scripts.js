@@ -1,6 +1,7 @@
 var jobIndex = 0;
 var jobs;
 var qr;
+var qr6k;
 var benefit;
 
 // ONLOAD FUNCTION 
@@ -185,6 +186,10 @@ function getJobDetails() {
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	var src = document.getElementById("code");
 	src.appendChild(qr);
+	
+	qr6k.src = "qrCodes/" + jobs[jobIndex].linkHash;
+	var crs = document.getElementById("code-6k");
+	crs.appendChild(qr6k);
 }
 
 //fills the benefit ul list with text in the job section
@@ -244,7 +249,7 @@ setInterval(function style() {
 		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
 		x++;
 	}
-}, 40000);
+}, 10000);
 
 //OLA FUNCTIONS
 //

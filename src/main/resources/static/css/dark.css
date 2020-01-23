@@ -53,14 +53,6 @@ p, ul, li {
     color: white;
 }
 
-.hide {
-    display: block;
-}
-
-.show {
-    display: none;
-}
-
 /* HEADER WITH LOGO */
 nav {
     background: #e20074;
@@ -139,6 +131,16 @@ nav #title #nav-title {
     width: 30vw;
     content: '';
     z-index: 0;
+}
+
+/* qr code for 6k TV */
+#job #job-header #qr-code-6k {
+    display: none;
+}
+
+#job #job-header #qr-code-6k #code-6k {
+    width: 11vw;
+    filter: invert(1);
 }
 
 /* current job's details container */
@@ -384,12 +386,7 @@ nav #title #nav-title {
 	}
 }
 
-/* the stripes styling for the table */
-/* #jobs table tr:nth-child(odd) {
-    background-color: #c6c6c673;
-} */
-
-.odd{
+.odd {
 	background-color: #35353573;
 } 
 
@@ -507,12 +504,12 @@ nav #title #nav-title {
         line-height: 0;
     }
     
-    #job-desc #job-title {
+    #job #job-header #job-desc #job-title {
         width: 45vw;
-        line-height: 3.4vw;
+        line-height: 3.5vw;
     }
     
-    #job-desc #job-title h1 {
+    #job #job-header #job-desc #job-title h1 {
         font-size: 3.9vw;
     }
     
@@ -589,7 +586,7 @@ nav #title #nav-title {
     }
     
     .odd{
-	background-color: #59595973;
+		background-color: #59595973;
     } 
     
     #jobs table .hotjob {
@@ -641,17 +638,21 @@ nav #title #nav-title {
     }
 } 
 
-@media (max-width: 1330px) and (min-width: 0px) {
+@media (max-width: 1330px) and (min-width: 500px) {
+    #job .job-details .job-detail-right .your {
+        width: 46%;
+    }
+    
+}
+
+@media (max-width: 500px) and (min-width: 0px) {
     #job .job-details .job-detail-right .your {
         width: 45%;
     }
+    
 }
 
 @media (min-width: 6000px){
-    .show {
-    	display: block;
-    }
-   
     nav #title #nav-title {
 	    line-height: 0 !important;
 	}
@@ -679,6 +680,10 @@ nav #title #nav-title {
 		width: 60vw;
 	}
 	
+	#job #job-header #qr-code-6k {
+    	display: block;
+    }
+    
 	#job #job-header #job-desc {
     	width: 48vw;
     	padding: 2vw 0 0 0;
