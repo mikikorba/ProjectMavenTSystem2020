@@ -9,6 +9,7 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
     scroll-behavior: smooth;
     -webkit-scroll-behavior: smooth;
+    color: black;
 }
 
 body::-webkit-scrollbar { 
@@ -265,6 +266,7 @@ nav #title #nav-title {
 
 #job .job-details .job-detail-left #qr-code #qr-title {
     text-transform: uppercase;
+    font-weight: 400;
     line-height: 0;
     padding-left: 1vw;
     font-size: 1.5vw;
@@ -273,7 +275,7 @@ nav #title #nav-title {
 
 /* current job's qr code image */ 
 #job .job-details .job-detail-left #qr-code #code .code {
-    width: 11vw;
+    width: 10vw;
 }
 
 /* current job's right section*/
@@ -289,7 +291,7 @@ nav #title #nav-title {
     width: 21.5vw;
     border: 1px solid #b2b2b2;
     border-radius: 0.2vw;
-    padding: 0.1vw;
+    padding: 0.2vw;
     margin: 0.2vw 0.8vw;
     height: 12.5vw;
 }
@@ -335,7 +337,7 @@ nav #title #nav-title {
     z-index: 99999;
     overflow: hidden;
     height: 3.5vw;
-  	background-color: #d00f61d6;
+  	background-color: #df1e70d6;
   	animation: fade 0.4s linear;
 }
 
@@ -363,12 +365,15 @@ nav #title #nav-title {
 }
 
 #progress {
-    animation: loader 8s linear infinite;
     width: 0;
-    background-color: #2400d2 !important;
+    background-color: #fd0082 !important;
     height: 3.5vw;
     position: absolute;
     z-index: 1;
+}
+
+.progress-bar {
+	animation: loader 10s linear infinite;
 }
 
 @keyframes loader {
@@ -377,6 +382,9 @@ nav #title #nav-title {
 	}
 	15% {
 		width: 0;
+	}
+	98%{
+		width: 100%;
 	}
 	100% {
 		width: 100%;
@@ -409,18 +417,18 @@ nav #title #nav-title {
 }
 
 #jobs table .location {
-    width: 24.3vw;
+    width: 23vw;
     font-size: 1.4vw; 
     
 }
 
 #jobs table .posted {
-    width: 10vw;
+    width: 12vw;
     font-size: 1.4vw;
 }
 
 #jobs table .benefits {
-    width: 5vw;
+    width: 6vw;
 }
 
 #jobs table .benefits img {
@@ -491,7 +499,7 @@ nav #title #nav-title {
     
     #job #job-header::after {
         background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 58%);
-        margin-top: -16vw;
+        margin-top: -15.9vw;
         margin-left: 0vw;
         width: 80vw;
     }
@@ -502,7 +510,7 @@ nav #title #nav-title {
     
     #job #job-header #job-desc #job-title {
         width: 45vw;
-        line-height: 3.4vw;
+        line-height: 3.5vw;
     }
     
     #job #job-header #job-desc #job-title h1 {
@@ -565,7 +573,8 @@ nav #title #nav-title {
     }
     
     #job .job-details .job-detail-right .your {
-        width: 45.5vw;
+    	padding: 2vw;
+        width: 42vw;
         height: 40.5vw;
     }
     
@@ -582,7 +591,7 @@ nav #title #nav-title {
     }
     
     .odd{
-		background-color: #59595973;
+		background-color: #bbbbbb73;
     } 
     
     #jobs table .hotjob {
@@ -634,25 +643,7 @@ nav #title #nav-title {
     }
 } 
 
-@media (max-width: 1330px) and (min-width: 500px) {
-    #job .job-details .job-detail-right .your {
-        width: 46%;
-    }
-    
-}
-
-@media (max-width: 500px) and (min-width: 0px) {
-    #job .job-details .job-detail-right .your {
-        width: 45%;
-    }
-    
-}
-
-@media (min-width: 6000px){
-    .show {
-    	display: block;
-    }
-   
+@media (min-width: 5750px){
     nav #title #nav-title {
 	    line-height: 0 !important;
 	}
@@ -680,6 +671,10 @@ nav #title #nav-title {
 		width: 60vw;
 	}
 	
+	#job #job-header #qr-code-6k {
+    	display: block;
+    }
+    	
 	#job #job-header #job-desc {
     	width: 48vw;
     	padding: 2vw 0 0 0;

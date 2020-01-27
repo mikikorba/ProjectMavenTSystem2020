@@ -34,7 +34,6 @@ mqttClient.connect({
 
 function appendLog(string) {
 	 document.getElementById('ee').innerHTML = document.getElementById('ee').innerHTML + "<br>" + string;
-
 }
 
 function onConnect() {
@@ -68,15 +67,8 @@ function onMessageArrived(message) {
 	if (result.status === 'recognized') {
 		console.log("recognized: " + result.recognized);
 //		appendLog("result.recognized: " + result.recognized);
-		var say = result.recognized;
+		var input = result.recognized;
 		// }
-		if (say === 'čierna téma') {
-//			say("dobrý nápad");
-			style(1)
-		}
-		else if (say === 'biela téma') {
-			//say("not béd");
-			style(0)
-		}
+		getInputAction(input);
 	}
 }

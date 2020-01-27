@@ -1,10 +1,8 @@
 var jobIndex = 0;
-var jobs;
-var qr;
-var qrk;
-var benefit;
+var jobs, qr, qrk, benefit, table, rows, style, i, x, y, number, search, inputSearch;
 
-// ONLOAD FUNCTION
+
+// ONLOAD FUNCTION 
 //
 // get the content for the whole site
 function onload() {
@@ -23,10 +21,10 @@ function onload() {
 
 	benefit = document.createElement("img");
 	benefit.setAttribute("class", "benefit");
-
 }
 
-// FUNCTIONS FOR FILLIN THE WHOLE SITE
+
+// FUNCTIONS FOR FILLIN THE WHOLE SITE AT START
 //
 // filling the table with rows first time when the page is displayed
 function fillTable() {
@@ -34,15 +32,15 @@ function fillTable() {
 	var cell0, cell1, cell2, cell3, cell4, cell5;
 	var table = document.getElementById("myTable");
 	var rows = table.rows;
-
+	
 	// loop for filling the jobs list with columns (cells)
 	for (i = 1; i <= jobs.length; i++) {
 		var job = jobs[i - 1];
 		var row = table.insertRow(i + 1);
-
+		row.className = i;
+		
 		cell0 = row.insertCell(0);
 		cell0.className = 'hotjob';
-		cell0.id = i;
 		cell0.innerHTML = i;
 
 		cell1 = row.insertCell(1);
@@ -66,10 +64,10 @@ function fillTable() {
 		cell5.className = 'url';
 		cell5.id = 'qr' + i;
 
-		// loop for filling the list of benefits with icons within the jobs list
+		// loop for filling the benefits with icons within the jobs list table	
 		var str = job.positionBenefit_Code;
 		var res = str.split(",");
-
+		
 		for (j = 0; j < res.length; j++) {
 			this["img" + j] = document.createElement("img");
 			if (job.positionBenefit_Code && res[j] !== undefined) {
@@ -81,27 +79,34 @@ function fillTable() {
 			src.appendChild(this["img" + j]);
 		}
 
-		// adds qr code to the job in the jobs list table
+		// adds qr code of the job in the jobs list table
 		var url = document.createElement("img");
 		url.src = "qrCodes/" + jobs[jobIndex].linkHash;
 		var src = document.getElementById("qr" + i);
 		src.appendChild(url);
 	}
-	// sets up the second / "active" line with background and font color
-	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
-
-	activeRowStyle();
+	
+	// adds background, font color & animation to the second / "active" row 
+	addRowStyle();
+	
+	// fills the job section with data
 	getJobDetails();
-
+	addBenefitImgs();
+	addBenefitTexts();
+	
 	// sets a grey background for every odd row in the jobs list table
-	for (i = 1; i <= jobs.length; i += 2)
-		document.getElementsByTagName("tr")[i].setAttribute("class", "odd");
-
+	for (i = 2; i <= jobs.length; i+=2){
+		var row = document.getElementsByTagName("tr")[i];
+		row.className += " odd";
+	}
 }
+
+
 
 // FUNCTIONS FOR THE JOB SECTION
 //
-// fills the actual job section based on the jobs list table
+// fills the actual job section within a selected interval
+var interval = 2000;
 function getJobDetails() {
 	document.getElementById("job-id-title").innerHTML = jobs[jobIndex].positionID;
 	document.getElementById("job-main-title").innerHTML = jobs[jobIndex].positionTitle;
@@ -114,82 +119,87 @@ function getJobDetails() {
 	document.getElementById("your-task").innerHTML = jobs[jobIndex].description;
 	document.getElementById("your-profile").innerHTML = jobs[jobIndex].requirements;
 
-	// filling the benefit ul list with images and text
-	addBenefitImgs();
-	addBenefitTexts();
-
 	// adds the big qr code to the job section
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	document.getElementById("code").appendChild(qr);
-
+	
 	var url = document.createElement("img");
 	url.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	document.getElementById("code-6k").appendChild(url);
+
+	// adds & removes the fade effect from the job section
+	addJobFade();
+	setTimeout(removeJobFade, interval);
+
 }
 
-// FUNCTIONS FOR THE JOBS LIST TABLE
-//
-// function to move the row and fill the job every 8 second
-setInterval(function sortTable() {
+// adds fade effect to the job section
+function addJobFade(){
+	document.getElementById("job").style.animation = "opacity 1.1s linear";
+}
 
+// removes previously added fade animation for the job section
+function removeJobFade(){
+	document.getElementById("job").removeAttribute("style");
+}
+
+
+// FUNCTIONS FOR THE JOBS LIST TABLE AND JOB SECTION
+//
+// function to move the row and fill
+function sortAndAnimate(inverval) {
 	jobIndex = (jobIndex + 1) % jobs.length;
 
-	var table, rows, style, i, x, y;
-	table = document.getElementById("myTable");
-	rows = table.rows;
+	// moves the first row to the end of the table
+	setTimeout(moveTable, interval/2);
 
-	// move each row, append last row to end of table in a given time interval
-	setTimeout(
-			function moveTable() {
-				for (i = 2; i < (rows.length - 1); i++) {
-					x = rows[i].getElementsByTagName("td")[0];
-					y = rows[i + 1].getElementsByTagName("td")[0];
-					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-					document.getElementsByTagName("tr")[2].setAttribute("id",
-							"active");
-					document.getElementsByTagName("tr")[3]
-							.removeAttribute("id");
-					document.getElementsByTagName("tr")[3]
-							.removeAttribute("style");
-					document.getElementsByTagName("tr")[rows.length - 1]
-							.removeAttribute("style");
-					document.getElementsByTagName("tr")[1]
-							.removeAttribute("style");
-				}
-			}, 1000);
-
-	// timer to change the "active" row's style with a 2 sec delay
-	setTimeout(activeRowStyle, 2000);
-
-	// timer to change the fill of the job section based on the jobs list
+	// timer to change the "active" row's style with a 1 sec delay
+	setTimeout(addRowStyle, interval);
+		
+	// timer to change the fill of the job section based on the jobs list 
 	// with 1 mil.sec delay right after the benefit icons have been removed
-	setTimeout(getJobDetails, 500);
-
-	activeRowSlide();
+	setTimeout(getJobDetails, interval/4);
+	setTimeout(addBenefitImgs, interval/4);
+	setTimeout(addBenefitTexts, interval/4);
 
 	// clears the benefit list from the job section
-	removeBenefitImgs();
+	setTimeout(removeBenefitImgs, interval/4.5);
+	
+	addRowSlide();
 
-}, 8000);
+}
 
-// adds animation to the "active" row in the jobs list
-function activeRowStyle() {
+// adds animation to the first row in the jobs list
+function addRowStyle() {
+	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
 	document.getElementById("active").style.transition = "height 0.2s";
+}
+// function to move the first row to the last position
+function moveTable() {
 
-	// removes the fade effect from the job section
-	removeFadeEffect()
+	table = document.getElementById("myTable");
+	rows = table.rows;
+	
+	for (i = 2; i < (rows.length - 1); i++) {
+		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		document.getElementsByTagName("tr")[2].setAttribute("id", "active");
+		document.getElementsByTagName("tr")[3].removeAttribute("id");
+		document.getElementsByTagName("tr")[3].removeAttribute("style");
+		document.getElementsByTagName("tr")[rows.length - 1].removeAttribute("style");
+		document.getElementsByTagName("tr")[1].removeAttribute("style");
+	}
 }
 
 // adds slide up animation for the "active" and "progress" row in the jobs list
 // adds the fade animation for the job section
-function activeRowSlide() {
-	document.getElementById("active").style.height = "0";
+function addRowSlide() {
+	document.getElementById("active").style.height = "0";	
 	document.getElementById("progress").style.height = "0";
-
-	document.getElementById("job").style.animation = "opacity 1s linear";
 }
 
-// BENEFITS
+
+
+// BENEFITS 
 //
 // fills the benefit ul list with text in the job section
 function addBenefitTexts() {
@@ -202,18 +212,18 @@ function addBenefitTexts() {
 }
 
 // fills the benefit ul list with icons corresponding to each benefit
-function addBenefitImgs() {
+function addBenefitImgs() {	
 	var str = jobs[jobIndex].positionBenefit_Code;
 	var res = str.split(",");
+	
+		for (i = 0; i < res.length; i++) {
 
-	for (i = 0; i < res.length; i++) {
-
-		this["marker" + i] = document.createElement("img");
-		if (str && res[i] !== undefined) {
+			this["marker" + i] = document.createElement("img");
+			if (str && res[i] !== undefined) {
 			this["marker" + i].src = "img/" + res[i] + ".png";
-		}
-		var doc = document.getElementById("benefit-list" + i);
-		doc.appendChild(this["marker" + i]);
+			}
+			var doc = document.getElementById("benefit-list" + i);
+			doc.appendChild(this["marker" + i]);
 	}
 }
 
@@ -225,33 +235,138 @@ function removeBenefitImgs() {
 	}
 }
 
-// removes previously added style for fade animation
-function removeFadeEffect() {
-	document.getElementById("job").removeAttribute("style");
-}
 
-// DARK MODE FUNCTION
+// SETS THE INTERVALS FOR THE ANIMATIONS AND SORTING OF THE WHOLE SITE
 //
-// swap style sheets to dark mode and back
-// var x = 1;
-//
-// setInterval(
-function style(x) {
-	if (x == 1) {
-		document.getElementById('pagestyle').setAttribute('href',
-				"css/dark.css");
-		// x--;
-	} else if (x == 0) {
-		document.getElementById('pagestyle').setAttribute('href',
-				"css/style.css");
-		// x++;
-	}
-}
-// , 40000);
+//////////////////////////////////////////////////////////
+var jobAnimation = setInterval(getJobDetails, 10000);
+var tableAnimation = setInterval(sortAndAnimate, 10000);
+//////////////////////////////////////////////////////////
+
+
 
 // OLA FUNCTIONS
 //
-// scrolls to the chosen row in the jobs list table
+// scrolls to the chosen row in the jobs list table or change the color theme
+//
+// change color theme
+function style(x) { 
+	clearInterval(jobAnimation);
+	clearInterval(tableAnimation);
+	removeProgressAnimation();
+	
+	setTimeout(function() {
+		sortAndAnimate(2000);
+		getJobDetails(2000);
+	}, 10);
+	
+	setTimeout(function() {
+		progress.classList.add("progress-bar");
+		jobAnimation = setInterval(getJobDetails, 10000);
+		tableAnimation = setInterval(sortAndAnimate, 10000);
+		if (x == 1) { 
+			document.getElementById('pagestyle').setAttribute('href', "css/dark.css"); 
+		} else if (x == 0) { 
+			document.getElementById('pagestyle').setAttribute('href', "css/style.css"); 
+		} 
+	}, 1000);
+}
 
-function scrollToJob(number) {
+// scrolls to the given row by index
+function scrollToJob(search) {	
+	if(number <= jobs.length) {
+		clearInterval(jobAnimation);
+		clearInterval(tableAnimation);
+		removeProgressAnimation();
+
+		var i;
+		for (i = 0; i <= search; i++) {
+			(function(i) {
+				setTimeout(function() {
+					sortAndAnimate(0);
+					getJobDetails(0);
+				}, 60 * i);
+			})(i);
+		}
+		
+		sortAndAnimate(2000);
+		getJobDetails(2000);
+		
+		setTimeout(function() {
+			progress.classList.add("progress-bar");
+			jobAnimation = setInterval(getJobDetails, 10000);
+			tableAnimation = setInterval(sortAndAnimate, 10000);
+		}, 4000);
+	}
+}
+
+// identifies the index of the chosen row
+function getRowIndex(matcher){
+	var table = document.getElementById("myTable");
+	var rows = table.rows;
+	for (i=2;i<=jobs.length;i++) {
+		var row = rows[i].className;
+		var pattern = /\d+/;
+		var result = row.match(pattern).join('');
+		if(result == number){
+			search = (table.rows[i].rowIndex)-4;
+		}
+	}
+	scrollToJob(search);
+}
+
+// removes the progress rows animation
+function removeProgressAnimation(){
+	var progress = document.getElementsByTagName("tr")[1];
+	var computedStyle = window.getComputedStyle(progress), width = computedStyle
+			.getPropertyValue('width');
+	progress.style.width = width;
+	progress.classList.remove("progress-bar");
+}
+
+// identify the number from the input
+function getInputAction(input) {
+	var pattern = /\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|biela téma/;
+	var matcher = input.match(pattern);
+	
+	if (matcher == 'čierna téma') {	
+//		say("dobrý nápad");
+		style(1);
+	} else if (matcher == 'biela téma') {
+//		say("not béd");
+		style(0);
+	} else if (matcher == "jeden" | matcher == "prvý") {
+		number = 1;
+		getRowIndex(number);
+	} else if (matcher == "dva" | matcher == "dve" | matcher == "druhý") {
+		number = 2;
+		getRowIndex(number);
+	} else if (matcher == "tri" | matcher == "tretí") {
+		number = 3;
+		getRowIndex(number);
+	} else if (matcher == "štyri" | matcher == "štvrtý") {
+		number = 4;
+		getRowIndex(number);
+	} else if (matcher == "päť" | matcher == "piaty") {
+		number = 5;
+		getRowIndex(number);
+	} else if (matcher == "šesť" | matcher == "šiestý") {
+		number = 6;
+		getRowIndex(number);
+	} else if (matcher == "sedem" | matcher == "siedmy") {
+		number = 7;
+		getRowIndex(number);
+	} else if (matcher == "osem" | matcher == "ôsmy") {
+		number = 8;
+		getRowIndex(number);
+	} else if (matcher == "deväť" | matcher == "deviaty") {
+		number = 9;
+		getRowIndex(number);
+	} else if (matcher == "desať" | matcher == "desiaty") {
+		number = 10;
+		getRowIndex(number);
+	} else {
+		number = matcher;
+		getRowIndex(number);
+	}
 }
