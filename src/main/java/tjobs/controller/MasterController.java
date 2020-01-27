@@ -38,8 +38,9 @@ public class MasterController {
 
 	@RequestMapping("")
 	public String index() {
+		
+//	return "olatrest";
 		if (refreshDB()) {
-
 			if (new Random().nextInt(5)==1) {
 //			if (new Random().nextInt(100)==1) {
 				return "loading2";

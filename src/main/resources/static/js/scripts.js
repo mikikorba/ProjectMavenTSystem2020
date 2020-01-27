@@ -4,7 +4,7 @@ var qr;
 var qrk;
 var benefit;
 
-// ONLOAD FUNCTION 
+// ONLOAD FUNCTION
 //
 // get the content for the whole site
 function onload() {
@@ -26,7 +26,7 @@ function onload() {
 
 }
 
-// FUNCTIONS FOR FILLIN THE WHOLE SITE 
+// FUNCTIONS FOR FILLIN THE WHOLE SITE
 //
 // filling the table with rows first time when the page is displayed
 function fillTable() {
@@ -34,12 +34,12 @@ function fillTable() {
 	var cell0, cell1, cell2, cell3, cell4, cell5;
 	var table = document.getElementById("myTable");
 	var rows = table.rows;
-	
+
 	// loop for filling the jobs list with columns (cells)
 	for (i = 1; i <= jobs.length; i++) {
 		var job = jobs[i - 1];
 		var row = table.insertRow(i + 1);
-		
+
 		cell0 = row.insertCell(0);
 		cell0.className = 'hotjob';
 		cell0.id = i;
@@ -66,10 +66,10 @@ function fillTable() {
 		cell5.className = 'url';
 		cell5.id = 'qr' + i;
 
-		// loop for filling the list of benefits with icons within the jobs list	
+		// loop for filling the list of benefits with icons within the jobs list
 		var str = job.positionBenefit_Code;
 		var res = str.split(",");
-		
+
 		for (j = 0; j < res.length; j++) {
 			this["img" + j] = document.createElement("img");
 			if (job.positionBenefit_Code && res[j] !== undefined) {
@@ -89,17 +89,17 @@ function fillTable() {
 	}
 	// sets up the second / "active" line with background and font color
 	document.getElementsByTagName("tr")[2].setAttribute("id", "active");
-	
+
 	activeRowStyle();
 	getJobDetails();
-	
+
 	// sets a grey background for every odd row in the jobs list table
-	for (i = 1; i <= jobs.length; i++)
-		document.getElementsByTagName("tr")[i + i].setAttribute("class", "odd");
+	for (i = 1; i <= jobs.length; i += 2)
+		document.getElementsByTagName("tr")[i].setAttribute("class", "odd");
 
 }
 
-//FUNCTIONS FOR THE JOB SECTION
+// FUNCTIONS FOR THE JOB SECTION
 //
 // fills the actual job section based on the jobs list table
 function getJobDetails() {
@@ -121,26 +121,26 @@ function getJobDetails() {
 	// adds the big qr code to the job section
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	document.getElementById("code").appendChild(qr);
-	
+
 	var url = document.createElement("img");
 	url.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	document.getElementById("code-6k").appendChild(url);
 }
 
-
 // FUNCTIONS FOR THE JOBS LIST TABLE
 //
 // function to move the row and fill the job every 8 second
 setInterval(function sortTable() {
-	
+
 	jobIndex = (jobIndex + 1) % jobs.length;
-	
+
 	var table, rows, style, i, x, y;
 	table = document.getElementById("myTable");
 	rows = table.rows;
 
 	// move each row, append last row to end of table in a given time interval
-	setTimeout( function moveTable() {
+	setTimeout(
+			function moveTable() {
 				for (i = 2; i < (rows.length - 1); i++) {
 					x = rows[i].getElementsByTagName("td")[0];
 					y = rows[i + 1].getElementsByTagName("td")[0];
@@ -154,44 +154,42 @@ setInterval(function sortTable() {
 					document.getElementsByTagName("tr")[rows.length - 1]
 							.removeAttribute("style");
 					document.getElementsByTagName("tr")[1]
-					.removeAttribute("style");
+							.removeAttribute("style");
 				}
 			}, 1000);
 
 	// timer to change the "active" row's style with a 2 sec delay
 	setTimeout(activeRowStyle, 2000);
 
-	// timer to change the fill of the job section based on the jobs list 
+	// timer to change the fill of the job section based on the jobs list
 	// with 1 mil.sec delay right after the benefit icons have been removed
 	setTimeout(getJobDetails, 500);
-	
-	activeRowSlide();	
-	
+
+	activeRowSlide();
+
 	// clears the benefit list from the job section
 	removeBenefitImgs();
-	
-}, 8000);
 
+}, 8000);
 
 // adds animation to the "active" row in the jobs list
 function activeRowStyle() {
 	document.getElementById("active").style.transition = "height 0.2s";
-	
+
 	// removes the fade effect from the job section
 	removeFadeEffect()
 }
 
-
 // adds slide up animation for the "active" and "progress" row in the jobs list
 // adds the fade animation for the job section
 function activeRowSlide() {
-	document.getElementById("active").style.height = "0";	
+	document.getElementById("active").style.height = "0";
 	document.getElementById("progress").style.height = "0";
 
 	document.getElementById("job").style.animation = "opacity 1s linear";
 }
 
-// BENEFITS 
+// BENEFITS
 //
 // fills the benefit ul list with text in the job section
 function addBenefitTexts() {
@@ -204,18 +202,18 @@ function addBenefitTexts() {
 }
 
 // fills the benefit ul list with icons corresponding to each benefit
-function addBenefitImgs() {	
+function addBenefitImgs() {
 	var str = jobs[jobIndex].positionBenefit_Code;
 	var res = str.split(",");
-	
-		for (i = 0; i < res.length; i++) {
 
-			this["marker" + i] = document.createElement("img");
-			if (str && res[i] !== undefined) {
+	for (i = 0; i < res.length; i++) {
+
+		this["marker" + i] = document.createElement("img");
+		if (str && res[i] !== undefined) {
 			this["marker" + i].src = "img/" + res[i] + ".png";
-			}
-			var doc = document.getElementById("benefit-list" + i);
-			doc.appendChild(this["marker" + i]);
+		}
+		var doc = document.getElementById("benefit-list" + i);
+		doc.appendChild(this["marker" + i]);
 	}
 }
 
@@ -228,56 +226,32 @@ function removeBenefitImgs() {
 }
 
 // removes previously added style for fade animation
-function removeFadeEffect(){
+function removeFadeEffect() {
 	document.getElementById("job").removeAttribute("style");
 }
 
-
-
-//DARK MODE FUNCTION
+// DARK MODE FUNCTION
 //
-//swap style sheets to dark mode and back
-//var x = 1;
+// swap style sheets to dark mode and back
+// var x = 1;
 //
-//setInterval(function style() {
-//	if (x == 1) {
-//		document.getElementById('pagestyle').setAttribute('href', "css/dark.css");
-//		x--;
-//	} else if (x == 0) {
-//		document.getElementById('pagestyle').setAttribute('href', "css/style.css");		
-//		x++;
-//	}
-//}, 40000);
+// setInterval(
+function style(x) {
+	if (x == 1) {
+		document.getElementById('pagestyle').setAttribute('href',
+				"css/dark.css");
+		// x--;
+	} else if (x == 0) {
+		document.getElementById('pagestyle').setAttribute('href',
+				"css/style.css");
+		// x++;
+	}
+}
+// , 40000);
 
-//OLA FUNCTIONS
+// OLA FUNCTIONS
 //
-//scrolls to the chosen row in the jobs list table
-
-var mqttClient = new Paho.MQTT.Client("openlab.kpi.fei.tuke.sk", 80, "TSDemo_" + new Date().getTime());
-mqttClient.onConnectionLost = onConnectionLost;
-mqttClient.onMessageArrived = onMessageArrived;
-mqttClient.connect({onSuccess: onConnect});
-
-function onConnect() {
-console.log("onConnect");
-mqttClient.subscribe("openlab/voice/recognition");
-}
-
-function onConnectionLost(responseObject) {
-if (responseObject.errorCode !== 0) {
-    console.log("onConnectionLost:" + responseObject.errorMessage);
-}
-}
-
-function onMessageArrived(message) {
-console.log("onMessageArrived:" + message.topic + " " + message.payloadString);
-  var result = JSON.parse(message.payloadString);
-  if (result.status === 'recognized') {
-      var x = result.recognized;
-  }
-}
-
+// scrolls to the chosen row in the jobs list table
 
 function scrollToJob(number) {
 }
-
