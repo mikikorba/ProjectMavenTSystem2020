@@ -18,6 +18,9 @@ function onload() {
 
 	qr = document.createElement("img");
 	qr.setAttribute("class", "code");
+	
+	qrk = document.createElement("img");
+	qrk.setAttribute("class", "code-6k");
 
 	benefit = document.createElement("img");
 	benefit.setAttribute("class", "benefit");
@@ -123,9 +126,8 @@ function getJobDetails() {
 	qr.src = "qrCodes/" + jobs[jobIndex].linkHash;
 	document.getElementById("code").appendChild(qr);
 	
-	var url = document.createElement("img");
-	url.src = "qrCodes/" + jobs[jobIndex].linkHash;
-	document.getElementById("code-6k").appendChild(url);
+	qrk.src = "qrCodes/" + jobs[jobIndex].linkHash;
+	document.getElementById("code-6k").appendChild(qrk);
 
 	// adds & removes the fade effect from the job section
 	addJobFade();

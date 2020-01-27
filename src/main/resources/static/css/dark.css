@@ -674,8 +674,16 @@ nav #title #nav-title {
 	}
 	
 	#job #job-header #qr-code-6k {
+		width: 13vw;
+		margin: 2.5vw 0 0 2vw;
+		z-index: 99999;
+		display: block;
+	}
+	
+	#job #job-header #qr-code-6k .code-6k {
+    	width: 10.5vw;
     	display: block;
-    }
+	}
     
 	#job #job-header #job-desc {
     	width: 48vw;
@@ -691,19 +699,7 @@ nav #title #nav-title {
 		font-size: 3vw;
 		line-height: 3vw;
 	}
-	
-	#job #job-header #qr-code {
-		width: 13vw;
-		margin: 2.5vw 0 0 2vw;
-		z-index: 99999;
-		display: block;
-	}
-	
-	#job #job-header #qr-code #code .code {
-    	width: 10.5vw;
-    	filter: invert(1);
-	}
-	
+
 	#job .job-details .job-detail-left {
 		width: 30vw;
 	}
