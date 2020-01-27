@@ -276,7 +276,7 @@ function style(x) {
 
 // scrolls to the given row by index
 function scrollToJob(search) {	
-	if(number <= jobs.length) {
+	if(number <= jobs.length && !(number < 1)) {
 		clearInterval(jobAnimation);
 		clearInterval(tableAnimation);
 		removeProgressAnimation();
@@ -328,18 +328,21 @@ function removeProgressAnimation(){
 
 // identify the number from the input
 function getInputAction(input) {
-	var pattern = /\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierne|biele/;
+	var pattern = /(?!-)\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|biela téma/;
 	var matcher = input.match(pattern);
 	
-//	if (input.test(pattern))
-	if (matcher == 'čierne') {	
-//		say("dobrý nápad");
+	if (matcher == 'čierna téma') {	
+		text = "dobrý nápad";
+		say(text);
 		style(1);
-	} else if (matcher == 'biele') {
-//		say("not béd");
+	} else if (matcher == 'biela téma') {
+		text = "oukej";
+		say(text);
 		style(0);
 	} else if (matcher == "jeden" | matcher == "prvý") {
 		number = 1;
+		text = "riadok ";
+		say(text + number);
 		getRowIndex(number);
 	} else if (matcher == "dva" | matcher == "dve" | matcher == "druhý") {
 		number = 2;
@@ -353,7 +356,7 @@ function getInputAction(input) {
 	} else if (matcher == "päť" | matcher == "piaty") {
 		number = 5;
 		getRowIndex(number);
-	} else if (matcher == "šesť" | matcher == "šiestý") {
+	} else if (matcher == "šesť" | matcher == "šiesty") {
 		number = 6;
 		getRowIndex(number);
 	} else if (matcher == "sedem" | matcher == "siedmy") {
@@ -372,6 +375,7 @@ function getInputAction(input) {
 		number = matcher;
 		getRowIndex(number);
 	} else {
-		console.log("nothing");
+		text = "skús iný riadok";
+		say(text);
 	}
 }

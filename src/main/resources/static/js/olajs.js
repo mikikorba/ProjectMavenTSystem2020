@@ -32,10 +32,6 @@ mqttClient.connect({
 // , reconnect: true
 });
 
-function appendLog(string) {
-	 document.getElementById('ee').innerHTML = document.getElementById('ee').innerHTML + "<br>" + string;
-}
-
 function onConnect() {
 	console.log("onConnect");
 //	appendLog("onConnect");
