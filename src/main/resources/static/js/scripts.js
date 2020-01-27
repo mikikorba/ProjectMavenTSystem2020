@@ -328,13 +328,14 @@ function removeProgressAnimation(){
 
 // identify the number from the input
 function getInputAction(input) {
-	var pattern = /\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|biela téma/;
+	var pattern = /\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierne|biele/;
 	var matcher = input.match(pattern);
 	
-	if (matcher == 'čierna téma') {	
+//	if (input.test(pattern))
+	if (matcher == 'čierne') {	
 //		say("dobrý nápad");
 		style(1);
-	} else if (matcher == 'biela téma') {
+	} else if (matcher == 'biele') {
 //		say("not béd");
 		style(0);
 	} else if (matcher == "jeden" | matcher == "prvý") {
@@ -367,8 +368,10 @@ function getInputAction(input) {
 	} else if (matcher == "desať" | matcher == "desiaty") {
 		number = 10;
 		getRowIndex(number);
-	} else {
+	} else if (matcher[0]) {
 		number = matcher;
 		getRowIndex(number);
+	} else {
+		console.log("nothing");
 	}
 }
