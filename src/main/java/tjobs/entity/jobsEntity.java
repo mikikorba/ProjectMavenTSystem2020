@@ -135,8 +135,8 @@ public class jobsEntity {
 					.get();
 			
 			setEmail(doc.select("a[data-title=\"contact-mail\"]").get(0).html());
-			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html().replaceAll("(<p(.*?)>[&nbsp;]*</p>)", "");
-			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html().replaceAll("(<p(.*?)>[&nbsp;]*</p>)", "");
+			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html().replaceAll("<p(.*?)>(&nbsp;)*</p>|style=\"(.*?)\"|[•]*&nbsp;|style=\"\\n\"", "");
+			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html().replaceAll("<p(.*?)>(&nbsp;)*</p>|style=\"(.*?)\"|[•]*&nbsp;|style=\"\\n\"", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
