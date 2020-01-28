@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading</title>
+    <meta http-equiv="refresh" content="30">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: black;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #scanvas {
+            display: none;
+            border: solid white 1px;
+        }
+
+        #lcanvas {
+            position: fixed;
+        }
+
+        #cdiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<canvas id="scanvas"></canvas>
+<div id="cdiv">
+    <canvas id="lcanvas"></canvas>
+</div>
+
+<script src="js/scripts2.js"></script>
+</body>
+</html>

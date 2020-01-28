@@ -266,15 +266,19 @@ function style(x) {
 		progress.classList.add("progress-bar");
 		jobAnimation = setInterval(getJobDetails, 10000);
 		tableAnimation = setInterval(sortAndAnimate, 10000);
-		if (x == 1) { 
-			text= "Oukej.";
-			say(text);
-			document.getElementById('pagestyle').setAttribute('href', "css/dark.css"); 
-		} else if (x == 0) {
+		if (x == 0) { 
 			text= "Dobre.";
 			say(text);
 			document.getElementById('pagestyle').setAttribute('href', "css/style.css"); 
-		} 
+		} else if (x == 1) {
+			text= "Oukej.";
+			say(text);
+			document.getElementById('pagestyle').setAttribute('href', "css/dark.css"); 
+		} else if (x == 2) {
+			text= "Skusim.";
+			say(text);
+			document.getElementById('pagestyle').setAttribute('href', "css/dark-6k.css"); 
+		}
 	}, 1000);
 }
 
@@ -340,13 +344,15 @@ function removeProgressAnimation(){
 
 // identify the number from the input
 function getInputAction(input) {
-	var pattern = /(?!-)\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|čiernu tému|čiernu|biela téma|bielu tému|bielu/;
+	var pattern = /(?!-)\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|čiernu tému|čiernu|biela téma|bielu tému|bielu|väčšie/;
 	var matcher = input.match(pattern);
 	
-	if (matcher == 'čierna téma'| matcher == 'čiernu tému' | matcher == 'čiernu') {	
-		style(1);
-	} else if (matcher == 'biela téma'| matcher == 'bielu tému' | matcher == 'bielu') {
+	if (matcher == 'biela téma'| matcher == 'bielu tému' | matcher == 'bielu') {
 		style(0);
+	} else if (matcher == 'čierna téma'| matcher == 'čiernu tému' | matcher == 'čiernu') {	
+		style(1);
+	} else if (matcher == 'väčšie') {
+		style(2);
 	} else if (matcher == "jeden" | matcher == "prvý") {
 		number = 1;
 		getRowIndex(number);

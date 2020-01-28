@@ -52,6 +52,20 @@ public class MasterController {
 		}
 	}
 
+//	@RequestMapping("/6k")
+//	public String index2() {
+//		
+//		if (refreshDB()) {
+//			if (new Random().nextInt(5)==1) {
+//				return "loading2-k6";
+//			} else {
+//				return "loading-6k";
+//			}
+//		} else {
+//			return "mainpage-6k";
+//		}
+//	}
+	
 	private boolean refreshDB() {
 		long nowTime = System.currentTimeMillis();
 		if (dbLastRefresh < nowTime - 1000 * 60 * 60) {

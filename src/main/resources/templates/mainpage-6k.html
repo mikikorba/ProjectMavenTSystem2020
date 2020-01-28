@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Systems JOB OFFERS</title>
+    <link id="pagestyle-6k" rel="stylesheet" href="css/dark-6k.css">
+    <script src="js/mqttws31.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/olajs.js"></script>
+</head>
+
+ <body onload="onload()" style="background:#ffffff"> 
+
+
+    <!-- The header of the site with the logo and title -->
+    <nav>
+        <div id="logo"><img src="img/t-systems-logo@2x.png"></div>
+        <div id="title"><h1 id="nav-title">Job opportunities for you!</h1></div>
+    </nav>
+    
+    <!-- Here begins the main content with the job list and selected / currently displayed job's details -->
+    <section id="container">
+        
+        <!-- Current job's details container -->
+        <div id="job">
+            
+            <!-- Current job's header container -->
+            <div id="job-header">
+                 <!--  QR code for 6K monitor (hidden) -->
+                <div id="qr-code-6k">
+                    <div id="code-6k">
+                    </div>
+                </div>
+                <div id="job-desc">
+                    <div id="desc">
+                        <span class="job-id"><h4><b>Job-ID: </b></h4></span>
+                        <span class="job-id"><h4 id="job-id-title"></h4></span>
+                    </div>
+                    <div id="job-title">
+                        <span><b><h1 id="job-main-title"></h1></b></span>
+                    </div>
+                </div>
+                <div id="job-motto">
+                    <span><h4 id="motto">Let's create the digital world of tommorrow. Apply now!</h4></span>
+                </div>
+            </div>
+            <!-- Current job's details container -->
+            <div class="job-details">
+                <!-- Current job's details container left side -->             
+                <div class="job-detail-left">
+                    <div id="table">
+                            <div class="desc-left"><h4><b>Locations:</b></h4></div><div class="desc-right"><h4 id="location"></h4></div>
+                            <div class="desc-left"><h4><b>Job level:</b></h4></div><div class="desc-right"><h4 id="job-level"></h4></div>
+                            <div class="desc-left"><h4><b>Employment type:</b></h4></div><div class="desc-right"><h4 id="type"></h4></div>
+                            <div class="desc-left"><h4><b>Application Deadline:</b></h4></div><div class="desc-right"><h4 id="deadline"></h4></div>
+                            <div class="desc-benefit"><h4 id="benefit"><b>Benefits:</b></h4></div>
+                            <div class="desc-benefit-text">
+                                <ul><span id="benefit-list0"></span><h4 id="benefits0"></h4></ul>
+                                <ul><span id="benefit-list1"></span><h4 id="benefits1"></h4></ul>
+                                <ul><span id="benefit-list2"></span><h4 id="benefits2"></h4></ul>
+                                <ul><span id="benefit-list3"></span><h4 id="benefits3"></h4></ul>
+                            </div>
+                           <div class="desc"><h4><b>Contact: </b><a class="link magent" id="position-uri"></a></h4></div>
+                    </div>
+                    
+                    <!-- Current job's qr code -->             
+                    <div id="qr-code">
+                        <h3 id="qr-title">Show more</h3>
+                        <div id="code">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current job's details container right side -->             
+                <div class="job-detail-right">
+                    <div class="your">
+                        <div class="detail-title magenta"><h2>Your task</h2></div>
+                        <div class="detail-text" id="your-task">
+                        </div>
+                    </div>
+                    <div class="your">
+                        <div class="detail-title magenta"><h2>Your profile</h2></div>
+                        <div class="detail-text" id="your-profile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!-- Jobs list section -->             
+        <div id="jobs">
+            <table id="myTable">
+                <thead>
+                  <tr>
+                    <th class="hotjob"><img src="img/T-GJS_sprite@2x.png"></th>
+                    <th class="job-title"><h4><span>Job title</span></h4></th>
+                    <th class="location"><h4><span>Location</span></h4></th>
+                    <th class="posted"><h4><span>Posted</span></h4></th>
+                    <th class="benefits"><h4>Benefits</h4></th>
+                    <th class="url"><h4>URL</h4></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="progress" class="progress-bar">
+                    <td class="hotjob"></td>
+                    <td class="job-title"></td>
+                    <td class="location"></td>
+                    <td class="posted"></td>
+                    <td class="benefits"></td>
+                    <td class="url"></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>

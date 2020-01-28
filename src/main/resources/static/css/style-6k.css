@@ -1,0 +1,746 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap&subset=latin-ext');
+
+body {
+	background: #ffffff !important;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-scroll-behavior: smooth;
+    color: black;
+}
+
+body::-webkit-scrollbar { 
+    display: none; 
+}
+
+body {
+  	overflow: hidden;
+}
+
+h4, p, a, ol, li {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 2vw;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.3vw;    
+}
+h3 {
+    font-size: 1.4vw;
+}
+h4 {
+    font-size: 1vw;
+}
+
+p, ul, li {
+    font-size: 0.7vw;    
+}
+
+/* USEFUL CLASSES AND IDs*/
+.magenta {
+    color: #e20074;
+}
+
+.link {
+    text-decoration: underline;
+}
+
+/* HEADER WITH LOGO */
+nav {
+    background: #e20074;
+    width: 100vw;
+    height: 4.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    z-index: 9999;
+    position: absolute;
+}
+
+/* t-systems logo */
+nav #logo {
+    width: 46vw;
+    margin: 1.2vw 0 0 3.2vw;
+}
+
+nav #logo img {
+    width: 12vw;
+}
+
+/* header title */
+nav #title {
+    width: 47.8vw;
+    margin: 0.6vw 0;
+}
+
+nav #title #nav-title {
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 0;
+    color: white;
+}
+
+/* MAIN CONTAINER */
+#container {
+    padding-top: 4.2vw;
+}
+
+/* CURRENT JOB'S CONTIANER */
+#job {
+}
+
+
+@keyframes opacity {
+	0% {
+		opacity: 100%;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100%;
+	}
+}
+
+/* CURRENT JOB'S HEADER SECTION */
+#job #job-header {
+    background: url("../img/GJSP_Header_T-Systems_Limited_UK.png");
+    background-repeat: no-repeat;
+    background-position: 40vw -1vw;
+    background-size: contain;
+    display: flex;
+    flex-wrap: wrap;
+    height: 9.3vw;
+}
+
+/* gradient on the background */
+#job #job-header::after {
+    display: block;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 88%);
+    margin-top: -15vw;
+    margin-left: 38vw;
+    width: 30vw;
+    content: '';
+    z-index: 0;
+}
+
+/* qr code for 6k TV */
+#job #job-header #qr-code-6k {
+    display: none;
+}
+
+#job #job-header #qr-code-6k #code-6k {
+    width: 11vw;
+    filter: invert(1);
+}
+
+/* current job's details container */
+#job #job-header #job-desc {
+    width: 48vw;
+    padding: 0 0 0 3.2vw;
+    z-index: 99999;
+}
+
+/* current job's id */
+#job #job-header #job-desc #desc .job-id {
+    display: inline-block;
+}
+
+/* current job's title */
+#job #job-header #job-desc #job-title {
+    height: 4vw;
+    margin-top:-2.5vw;
+    width: 37vw;
+    font-weight: 700;
+    line-height: 2vw;
+    text-transform: uppercase;
+}
+
+/* current job's slogan */
+#job #job-header #job-motto {
+    width: 22vw;
+    padding: 0 0 0 1.5vw;
+    z-index: 9999;
+}
+
+#job #job-header #job-motto #motto {
+    color: white;
+    text-transform: uppercase;
+}
+#job #job-header #job-motto #motto h4 {
+    font-weight: 300;
+}
+
+/* current job's details container*/
+#job .job-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* current job's left section */
+#job .job-details .job-detail-left {
+    width: 46vw;
+    padding: 0.6vw 0 0 3.2vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+#job #job-header #job-desc #job-title span {
+	margin: 0;
+}
+
+#job .job-details .job-detail-left #table {
+    width: 34vw;  
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+#job .job-details .job-detail-left #table h4 {
+    margin: 0;
+}
+
+#job .job-details .job-detail-left #table .desc-left {
+    width: 13vw;
+    font-weight: 700;
+    height: 1vw;
+} 
+
+#job .job-details .job-detail-left #table .desc-right {
+    width: 20vw;
+    height: 1vw;
+} 
+
+#job .job-details .job-detail-left #table .desc-benefit {
+    width: 3.4vw;
+    margin-top: 1vw;
+}
+
+#job .job-details .job-detail-left #table .desc-benefit-text {
+    width: 30vw;
+    height: 5vw;
+    overflow: hidden;
+    margin-top: 0.8vw;
+    display: inline-block;
+} 
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul {
+    margin: 0.2vw;
+} 
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul img {
+    width: 1vw;
+    margin-right: 0.4vw;
+} 
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul span {
+	display: inline-block;
+}
+
+#job .job-details .job-detail-left #table .desc-benefit-text ul h4 {
+	display: inline-block;
+}
+
+#job .job-details .job-detail-left  #table .desc-benefit-text .benefit {
+    display: inline-block;
+    float: left;
+    margin-right: 1vw;
+    width: 1vw;
+}
+
+#job .job-details .job-detail-left  #table .desc {
+    margin-top: 1.2vw;
+}
+
+/* current job's qr code container */
+#job .job-details .job-detail-left #qr-code {
+    padding: 0;
+}
+
+#job .job-details .job-detail-left #qr-code #qr-title {
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 0;
+    padding-left: 1vw;
+    font-size: 1.5vw;
+    margin: 1vw 0;
+}
+
+/* current job's qr code image */ 
+#job .job-details .job-detail-left #qr-code #code .code {
+    width: 10vw;
+}
+
+/* current job's right section*/
+#job .job-details .job-detail-right {
+    width: 48vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 1.7vw;
+}
+
+/* current job's right container with rounded corners*/
+#job .job-details .job-detail-right .your {
+    width: 21.5vw;
+    border: 1px solid #b2b2b2;
+    border-radius: 0.2vw;
+    padding: 0.2vw;
+    margin: 0.2vw 0.8vw;
+    height: 12.5vw;
+}
+
+/* current job's rounded container title */
+#job .job-details .job-detail-right .your .detail-title {
+    border-bottom: 1px dashed #b2b2b2;
+    padding: 0.2vw 1vw;
+}
+
+#job .job-details .job-detail-right .your .detail-title h2 {
+    line-height: 0;
+    color: #e20074;
+    text-transform: uppercase;
+}
+
+/* current job's right side container fill text*/
+#job .job-details .job-detail-right .your .detail-text {
+    padding: 0 1vw 0.5vw 1vw;
+    height: 8vw;
+    overflow: hidden;
+}
+
+/* JOBS LIST SECTION */
+#jobs {
+    margin-top: 0.8vw;
+}
+
+/* the main table for the jobs list */
+#jobs table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 0;
+    width: 100%;
+    text-align: left;
+    padding: 0 3.2vw;
+    z-index: 99999;
+}
+
+#active {
+ 	color: white;	
+    position: relative;
+    z-index: 99999;
+    overflow: hidden;
+    height: 3.5vw;
+  	background-color: #df1e70d6;
+  	animation: fade 0.4s linear;
+}
+
+@keyframes fade {
+	0% {
+		background: #ff000000;
+	}
+	100% {
+		background: #d00f61d6;
+	}
+}
+
+#jobs table #active .job-title {
+    font-weight: 700 !important;
+    text-transform: uppercase; 
+}
+
+#jobs table tr {
+	display: block;
+    font-weight: 400; 
+}
+
+#jobs table td {
+    height: 3.5vw;   
+}
+
+#progress {
+    width: 0;
+    background-color: #fd0082 !important;
+    height: 3.5vw;
+    position: absolute;
+    z-index: 1;
+}
+
+.progress-bar {
+	animation: loader 10s linear infinite;
+}
+
+@keyframes loader {
+	0% {
+		width: 0;
+	}
+	15% {
+		width: 0;
+	}
+	98%{
+		width: 100%;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+.odd {
+	background-color: #d7d7d773;
+} 
+
+#jobs table thead tr {
+    background: white !important;
+}
+
+#jobs table .hotjob {
+    width: 2.3vw;
+    padding-left: 0.9vw;
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+#jobs table .hotjob img {
+    width: 0.9vw;
+}
+
+#jobs table .job-title {
+    width: 50vw;
+    font-size: 1.4vw;
+    line-height: 0 !important;
+}
+
+#jobs table .location {
+    width: 23vw;
+    font-size: 1.4vw; 
+    
+}
+
+#jobs table .posted {
+    width: 12vw;
+    font-size: 1.4vw;
+}
+
+#jobs table .benefits {
+    width: 6vw;
+}
+
+#jobs table .benefits img {
+    padding-right: 0.1vw;
+    width: 1.2vw;
+}
+
+#jobs table .url {
+    text-align: center;
+}
+
+#jobs table .url img {
+    width: 2.5vw;
+}
+
+/* RESPONSIVENESS */
+@media only screen and (orientation: portrait) {
+    
+    h1 {
+    }
+    
+    h2 {
+        font-size: 2.4vw;    
+    }
+    h3 {
+        font-size: 2.5vw;
+        line-height: 2.8vw;
+    }
+    h4 {
+        font-size: 1.8vw;
+    }
+
+    p, ul, li {
+        font-size: 1.6vw;    
+    }
+
+    nav {
+        height: 6vw;
+    }
+    
+    nav #logo {
+        width: 50vw;
+        margin: 1.6vw 0 0 3.2vw;
+    }
+    
+    nav #logo img {
+        width: 18vw;
+    }
+
+    nav #title {
+        width: 44vw;
+        margin: 0.6vw 0;
+    }
+
+    nav #title h1 {
+        font-size: 3vw;
+    }
+    
+    #container {
+        padding-top: 5.6vw;
+    }
+    
+    #job #job-header {
+        background-position: -20vw 0vw;
+        background-size: cover;
+        height: 21vw;
+    }
+    
+    #job #job-header::after {
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 58%);
+        margin-top: -15.9vw;
+        margin-left: 0vw;
+        width: 80vw;
+    }
+    
+    #job #job-header #job-desc #desc .job-id {
+        line-height: 0;
+    }
+    
+    #job #job-header #job-desc #job-title {
+        width: 45vw;
+        line-height: 3.5vw;
+    }
+    
+    #job #job-header #job-desc #job-title h1 {
+        font-size: 3.9vw;
+    }
+    
+    #job-motto #motto {
+        display: none;
+    }
+    
+    #job .job-details .job-detail-left {
+        width: 97vw;
+        padding: 2.4vw 0 0 3.2vw;
+    }
+    #job .job-details .job-detail-left #table {
+        width: 70vw;
+    }
+    
+    #job .job-details .job-detail-left #qr-code #qr-title {
+        font-size: 2.8vw;
+        margin-left: 0.6vw
+    }
+    
+    #job .job-details .job-detail-left #qr-code #code .code {
+        width: 23vw;  
+        margin-top: 1vw;
+    }
+    
+    #job .job-details .job-detail-left #table .desc-left {
+        width: 25vw;
+        height: 2vw;
+    }
+    
+    #job .job-details .job-detail-left #table .desc-right  {
+        width: 45vw;
+    }
+    
+    #job .job-details .job-detail-left #table .desc-benefit {
+        width: 10vw;
+    }
+    
+    #job .job-details .job-detail-left #table .desc-benefit-text ul img {
+    	width: 1.9vw;
+    	margin-right: 1vw;
+	} 
+    
+    
+    #job .job-details .job-detail-left #table .desc-benefit-text .benefit {
+        width: 2vw;
+    }
+    
+    #job .job-details .job-detail-left #table .desc-benefit-text {
+        width: 50vw;
+        height: 8vw;
+    }
+    
+    #job .job-details .job-detail-right {
+        width: 97vw;
+        margin-top: 2vw;
+    }
+    
+    #job .job-details .job-detail-right .your {
+    	padding: 2vw;
+        width: 42vw;
+        height: 40.5vw;
+    }
+    
+    #job .job-details .job-detail-right .your .detail-text {
+        height: 34vw;
+    }
+    
+    #jobs {
+        margin-top: 3.2vw;
+    }
+    
+    #jobs table td {
+    	height: 8vw;
+    }
+    
+    .odd{
+		background-color: #b3b2b273;
+    } 
+    
+    #jobs table .hotjob {
+        width: 3vw;
+        padding-left: 1.2vw;
+        font-size: 2vw;
+    }
+
+    #jobs table .job-title {
+        width: 41vw;
+        padding-right: 1.2vw;
+        font-size: 2.4vw;
+     	line-height: normal !important;       
+    }
+
+    #jobs table .location {
+        width: 22vw;
+        font-size: 2.4vw;
+    	line-height: normal !important;
+    }
+
+    #jobs table .posted {
+        width: 14vw;
+        font-size: 2.4vw;
+    	line-height: normal !important;
+    }
+
+    #jobs table .benefits {
+        width: 7vw;
+    }
+
+    #jobs table .benefits img{
+        margin-right: 0.2vw;
+        width: 1.9vw;
+    }
+    
+    #jobs table .url {
+        width: 5vw;
+    }
+    
+    #jobs table .url img {
+        width: 5vw;
+    }
+
+    #progress, #active {
+        height: 8vw;
+        font-size: 2.4vw;
+        line-height: normal !important;
+    }
+} 
+
+@media (min-width: 0px){
+    nav #title #nav-title {
+	    line-height: 0 !important;
+	}
+    
+    #job #job-header #job-motto {
+		display: none;
+	}
+    
+    #job .job-details .job-detail-left #qr-code {
+		display: none;	
+	}
+    
+	#job .job-details .job-detail-left #qr-code .show #qr-title  {
+		display: none;
+	}
+	
+	#job #job-header {
+    	height: 15vw;
+    	background-position: 3vw -1vw;
+	}
+	
+	#job #job-header::after {
+		margin-left: 3vw;
+		background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, #fff 60%);
+		width: 60vw;
+	}
+	
+	#job #job-header #qr-code-6k {
+		width: 13vw;
+		margin: 2.5vw 0 0 2vw;
+		z-index: 99999;
+		display: block;
+	}
+	
+	#job #job-header #qr-code-6k .code-6k {
+    	width: 10.5vw;
+    	display: block;
+    	filter: invert(1);
+	}
+	
+	#job #job-header #job-desc {
+    	width: 48vw;
+    	padding: 2vw 0 0 0;
+    }
+	
+	#job #job-header #job-desc #job-title {
+		height: 6.5vw;
+		width: 45vw;
+	}
+	
+	#job #job-header #job-desc #job-title #job-main-title {
+		font-size: 3vw;
+		line-height: 3vw;
+	}
+	
+	#job .job-details .job-detail-left {
+		width: 30vw;
+	}
+	
+	#job .job-details .job-detail-left #table {
+		width: 100%;
+	}
+		
+	#job .job-details .job-detail-left #table .desc-left {
+    	width: 15vw;
+    	height: 1.5vw;
+	} 
+
+	#job .job-details .job-detail-left #table .desc-right {
+		width: 15vw;
+   		height: 1.5vw;
+	} 
+	
+	#job .job-details .job-detail-left #table .desc-benefit {
+    	width: 5vw;
+s	}
+	
+	#job .job-details .job-detail-left #table .desc-benefit-text {
+		width: 25vw;
+		height: 5vw;
+	}
+	
+	#job .job-details .job-detail-right {
+		width: 66.5vw;
+		margin-left: 0;
+	}
+	
+	#job .job-details .job-detail-right .your {
+		width: 29vw;
+		height: 15vw;
+		margin: 0.2vw 0 0 3vw;
+	}
+	#job .job-details .job-detail-right .your .detail-text {
+		height: 11vw;
+	}
+	
+	#jobs table {
+		margin-top: 3.5vw;
+	}
+}
