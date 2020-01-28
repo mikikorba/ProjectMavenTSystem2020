@@ -38,9 +38,9 @@ public class jobsEntity {
 	private String CareerLevel = "";
 	private String PositionID = "";
 	private String ParentOrganizationName = "";
-	@Column (length = 8000)
+	@Column (length = 50000)
 	private String Requirements = "";
-	@Column (length = 8000)
+	@Column (length = 50000)
 	private String Description = "";
 	private String Email = "";
 
@@ -135,8 +135,8 @@ public class jobsEntity {
 					.get();
 			
 			setEmail(doc.select("a[data-title=\"contact-mail\"]").get(0).html());
-			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html();
-			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html();
+			Requirements = doc.select("div[class=\"panel-body-inner\"]").get(1).html().replaceAll("(<p(.*?)>[&nbsp;]*</p>)", "");
+			Description = doc.select("div[class=\"panel-body-inner\"]").get(0).html().replaceAll("(<p(.*?)>[&nbsp;]*</p>)", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
