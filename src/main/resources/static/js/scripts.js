@@ -267,8 +267,12 @@ function style(x) {
 		jobAnimation = setInterval(getJobDetails, 10000);
 		tableAnimation = setInterval(sortAndAnimate, 10000);
 		if (x == 1) { 
+			text= "Oukej.";
+			say(text);
 			document.getElementById('pagestyle').setAttribute('href', "css/dark.css"); 
-		} else if (x == 0) { 
+		} else if (x == 0) {
+			text= "Dobre.";
+			say(text);
 			document.getElementById('pagestyle').setAttribute('href', "css/style.css"); 
 		} 
 	}, 1000);
@@ -280,6 +284,11 @@ function scrollToJob(search) {
 		clearInterval(jobAnimation);
 		clearInterval(tableAnimation);
 		removeProgressAnimation();
+		
+		setTimeout(function() {
+			text= "Moment prosím.";
+			say(text);
+		}, 20);
 
 		var i;
 		for (i = 0; i <= search; i++) {
@@ -299,6 +308,9 @@ function scrollToJob(search) {
 			jobAnimation = setInterval(getJobDetails, 10000);
 			tableAnimation = setInterval(sortAndAnimate, 10000);
 		}, 4000);
+	} else {
+		text = "Maximálny počet riadok je " + jobs.length + " . Skús iné číslo.";
+		say(text);
 	}
 }
 
@@ -328,21 +340,15 @@ function removeProgressAnimation(){
 
 // identify the number from the input
 function getInputAction(input) {
-	var pattern = /(?!-)\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|biela téma/;
+	var pattern = /(?!-)\d+|jeden|prvý|dve|dva|druhý|tri|tretí|štyri|štvrtý|päť|piaty|šesť|šiesty|sedem|siedmy|osem|ôsmy|deväť|deviaty|desať|desiaty|čierna téma|čiernu tému|čiernu|biela téma|bielu tému|bielu/;
 	var matcher = input.match(pattern);
 	
-	if (matcher == 'čierna téma') {	
-		text = "dobrý nápad";
-		say(text);
+	if (matcher == 'čierna téma'| matcher == 'čiernu tému' | matcher == 'čiernu') {	
 		style(1);
-	} else if (matcher == 'biela téma') {
-		text = "oukej";
-		say(text);
+	} else if (matcher == 'biela téma'| matcher == 'bielu tému' | matcher == 'bielu') {
 		style(0);
 	} else if (matcher == "jeden" | matcher == "prvý") {
 		number = 1;
-		text = "riadok ";
-		say(text + number);
 		getRowIndex(number);
 	} else if (matcher == "dva" | matcher == "dve" | matcher == "druhý") {
 		number = 2;
@@ -375,7 +381,5 @@ function getInputAction(input) {
 		number = matcher;
 		getRowIndex(number);
 	} else {
-		text = "skús iný riadok";
-		say(text);
 	}
 }

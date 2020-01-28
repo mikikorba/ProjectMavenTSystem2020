@@ -39,7 +39,7 @@ function onConnect() {
 }
 
 function onConnectionLost(responseObject) {
-	appendLog("onConnectionLost:" + responseObject.errorMessage);
+//	appendLog("onConnectionLost:" + responseObject.errorMessage);
 	if (responseObject.errorCode !== 0) {
 		console.log("onConnectionLost:" + responseObject.errorMessage);
 	}
